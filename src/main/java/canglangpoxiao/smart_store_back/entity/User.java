@@ -9,16 +9,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-    String uid;
+    String u_tel;
     String uname;
     String upwd;
+    String u_signature;
 
-    public String getUserId() {
-        return uid;
+    public String getUserTel() {
+        return u_tel;
     }
 
-    public void setUserId(String uid) {
-        this.uid = uid;
+    public void setUserTel(String u_tel) {
+        this.u_tel = u_tel;
     }
 
     public String getUserName() {
@@ -36,6 +37,4 @@ public class User {
     public void setPassword(String upwd) {
         this.upwd = upwd;
     }
-
-
 }

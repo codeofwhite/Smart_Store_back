@@ -15,43 +15,43 @@ public class TestController {
     private UserRepository userRepository;
     //    private JdbcTemplate jdbcTemplate;
 
-    @RequestMapping(value="/getUsers",method = RequestMethod.GET)
+    @RequestMapping(value = "/getUsers", method = RequestMethod.GET)
     @ResponseBody
-    public List<User> findAll(){
+    public List<User> findAll() {
         List<User> userList = userRepository.findAll();
-        return  userList;
+        return userList;
     }
 
-    @RequestMapping(value = "/register",method = RequestMethod.GET)
-    public boolean register(@RequestParam("userId") String userId,
-                            @RequestParam("userName") String userName,
-                            @RequestParam("password") String password){
-        try {
-            userRepository.register(userId,userName,password);
-            System.out.println("可以正常执行");
-            return true; //注册成功则返回true
-        } catch (Exception e) {
-            e.printStackTrace();
-        }return false;
-    }
-
-
-
-        @PostMapping("/login")
-        public  ResponseEntity<String>  login(@RequestBody LoginDTO loginDTO) {
-            String uid = loginDTO.getUserId();
-            String upwd = loginDTO.getPassword();
-            User user=null;
-            System.out.println(uid);
-            System.out.println(upwd);
-            user = userRepository.login(uid,upwd);
-            if(user == null)
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("failure");
-            if(user.getPassword().equals(upwd)){
-                return ResponseEntity.ok("success");}
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("failure");
+    @PostMapping("/register")
+    public ResponseEntity<String> register(@RequestBody LoginDTO loginDTO) {  //复用，功能相同
+        String u_tel = loginDTO.getUserTel();
+        String upwd = loginDTO.getPassword();
+        User user = null;
+        user = userRepository.login(u_tel, upwd);  //判断用户是否存在
+        if (user == null) {  //空用户，可以注册
+            userRepository.register(u_tel, upwd);
+            return ResponseEntity.ok("sign_up_success");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("repeat_sign_up");
         }
+    }
 
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginDTO loginDTO) {
+        String u_tel = loginDTO.getUserTel();
+        String upwd = loginDTO.getPassword();
+        User user = null;
+        System.out.println(u_tel);
+        System.out.println(upwd);
+        user = userRepository.login(u_tel, upwd);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("NULL");
+        }
+        if (user.getPassword().equals(upwd)) {
+            return ResponseEntity.ok("success");
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("failure");
+    }
 }
 
 

@@ -9,6 +9,7 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
     List<User> findAll();
-    void register(String uid, String uname,String upwd);
-    User login(@Param("uid") String uid, @Param("upwd") String upwd);
+    void register(@Param("u_tel") String u_tel, @Param("upwd") String upwd);
+
+    User login(@Param("u_tel") String u_tel, @Param("upwd") String upwd);
 }

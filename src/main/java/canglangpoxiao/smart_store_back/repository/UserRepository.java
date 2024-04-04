@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserRepository {
     public List<User> findAll();
-    public void register(String uid,String uname,String upwd);
-    public User login(String uid, String upwd);
-    // public Boolean update(String userId,Boolean status);
+    public void register(String u_tel, String upwd);
+    public User login(String u_tel, String upwd);
+
 }

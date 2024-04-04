@@ -20,12 +20,12 @@ public class UserRepositoryImpl implements UserRepository {
         return userMapper.findAll();
     }
     @Override
-    public void register(String userId, String userName,String password) {
-        userMapper.register(userId, userName,password);
+    public void register(String u_tel, String upwd) {
+        userMapper.register(u_tel, upwd);
     }
     @Override
-    public User login(String userId, String password) {
-        return userMapper.login(userId,password);
+    public User login(String u_tel, String upwd) {
+        return userMapper.login(u_tel,upwd);
     }
 
 }

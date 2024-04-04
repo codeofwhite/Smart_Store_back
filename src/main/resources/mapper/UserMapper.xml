@@ -7,11 +7,11 @@
         select * from user_info
     </select>
     <insert id="register" parameterType="canglangpoxiao.smart_store_back.entity.User">
-        insert into user_info (uid, uname, upwd, usex, u_signature, u_lvl, u_fam_num, u_layout_num, u_it_num, u_online, u_img)
-        values (#{userId}, #{userName}, #{password}, 0,0,0,0,0,0,1,0);
+        insert into user_info (uname, upwd, usex, u_signature, u_lvl, u_fam_num, u_layout_num, u_it_num, u_online,u_tel)
+        values ('你好世界',#{upwd}, 0,0,0,0,0,0,1,#{u_tel});
     </insert>
     <select id="login" resultType="canglangpoxiao.smart_store_back.entity.User">
-        SELECT * FROM user_info WHERE uid = #{uid}
+        SELECT * FROM user_info WHERE u_tel = #{u_tel}
     </select>
 </mapper>
 
