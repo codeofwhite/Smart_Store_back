@@ -18,4 +18,14 @@ public class ItemRepositoryImpl implements ItemRepository {
     public List<ItemInfo> findAllItem(long uid) {
         return itemInfoMapper.findAllItem(uid);
     }
+
+    @Override
+    public List<ItemInfo> useStgFindItem(long stg_id) {
+        return itemInfoMapper.useStgFindItem(stg_id);
+    }
+
+    @Override
+    public void deleteItem(long it_id) {
+        itemInfoMapper.deleteItem(it_id);
+    }
 }

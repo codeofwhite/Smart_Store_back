@@ -17,4 +17,9 @@ public class LayoutRepositoryImpl implements LayoutRepository {
     public List<LayoutInfo> findAllLayout(long uid) {
         return layoutInfoMapper.findAllLayout(uid);
     }
+
+    @Override
+    public void insertLayout(long uid, String layout_name, long layout_size, String layout_img) {
+        layoutInfoMapper.insertLayout(uid,layout_name,layout_size,layout_img);
+    }
 }

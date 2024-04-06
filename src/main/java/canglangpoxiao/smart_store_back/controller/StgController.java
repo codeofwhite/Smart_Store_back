@@ -19,4 +19,11 @@ public class StgController {
         List<StgInfo> list = stgRepository.findAllStg(uid);
         return list;
     }
+
+    @RequestMapping(value = "/useRoomFindStg", method = RequestMethod.POST)
+    @ResponseBody
+    public List<StgInfo> useRoomFindStg(@RequestParam long room_id){
+        List<StgInfo> list = stgRepository.useRoomFindStg(room_id);
+        return list;
+    }
 }

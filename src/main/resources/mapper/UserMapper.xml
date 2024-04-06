@@ -13,5 +13,9 @@
     <select id="login" resultType="canglangpoxiao.smart_store_back.entity.User">
         SELECT * FROM user_info WHERE u_tel = #{u_tel}
     </select>
+    <!--更新用户图片-->
+    <update id="updateUserImg">
+        UPDATE user_info SET u_img = #{u_img} WHERE uid = #{uid};
+    </update>
 </mapper>
 

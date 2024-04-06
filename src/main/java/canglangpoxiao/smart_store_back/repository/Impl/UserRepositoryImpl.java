@@ -28,4 +28,9 @@ public class UserRepositoryImpl implements UserRepository {
         return userMapper.login(u_tel,upwd);
     }
 
+    @Override
+    public void updateUserImg(String u_img, long uid) {
+        userMapper.updateUserImg(u_img, uid);
+    }
+
 }

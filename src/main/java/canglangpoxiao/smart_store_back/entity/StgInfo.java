@@ -14,6 +14,7 @@ public class StgInfo {
   private String stg_name;
   private double stg_size;
   private long uid;
+  String stg_img;
 
 
 }

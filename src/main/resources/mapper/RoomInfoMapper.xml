@@ -5,5 +5,8 @@
     <select id="findAllRoom" resultType="canglangpoxiao.smart_store_back.entity.RoomInfo">
         SELECT * FROM room_info WHERE uid = #{uid};
     </select>
+    <select id="useLayoutFindRoom" resultType="canglangpoxiao.smart_store_back.entity.RoomInfo">
+        SELECT * FROM room_info WHERE layout_id = #{layout_id};
+    </select>
 </mapper>
 

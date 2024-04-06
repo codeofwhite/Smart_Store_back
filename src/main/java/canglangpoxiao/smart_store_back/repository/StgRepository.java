@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface StgRepository {
     public List<StgInfo> findAllStg(long uid);
+
+    public List<StgInfo> useRoomFindStg(long room_id);
 }

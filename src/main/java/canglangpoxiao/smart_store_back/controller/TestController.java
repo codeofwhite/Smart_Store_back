@@ -47,7 +47,7 @@ public class TestController {
         if (user == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("NULL");
         }
-        if (user.getPassword().equals(upwd)) {
+        if (user.getUpwd().equals(upwd)) {
             return ResponseEntity.ok("success");
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("failure");

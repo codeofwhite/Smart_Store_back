@@ -6,4 +6,7 @@ import java.util.List;
 
 public interface LayoutRepository {
     public List<LayoutInfo> findAllLayout(long uid);
+
+    void insertLayout( long uid, String layout_name,
+                      long layout_size, String layout_img);
 }

@@ -9,4 +9,6 @@ import java.util.List;
 @Mapper
 public interface StgInfoMapper {
     List<StgInfo> findAllStg(@Param("uid") long uid);
+
+    List<StgInfo> useRoomFindStg(@Param("room_id") long room_id);
 }

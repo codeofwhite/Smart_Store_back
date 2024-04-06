@@ -17,4 +17,9 @@ public class StgRepositoryImpl implements StgRepository {
     public List<StgInfo> findAllStg(long uid) {
         return stgInfoMapper.findAllStg(uid);
     }
+
+    @Override
+    public List<StgInfo> useRoomFindStg(long room_id) {
+        return stgInfoMapper.useRoomFindStg(room_id);
+    }
 }

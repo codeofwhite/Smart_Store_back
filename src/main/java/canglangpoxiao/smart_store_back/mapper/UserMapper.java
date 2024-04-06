@@ -12,4 +12,6 @@ public interface UserMapper {
     void register(@Param("u_tel") String u_tel, @Param("upwd") String upwd);
 
     User login(@Param("u_tel") String u_tel, @Param("upwd") String upwd);
+
+    void updateUserImg(@Param("u_img") String u_img, @Param("uid") long uid);
 }

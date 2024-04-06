@@ -5,5 +5,9 @@
     <select id="findAllLayout" resultType="canglangpoxiao.smart_store_back.entity.LayoutInfo">
         SELECT * FROM layout_info WHERE uid = #{uid};
     </select>
+    <insert id="insertLayout">
+        INSERT INTO layout_info (uid, layout_name, layout_size, layout_img)
+        VALUES (#{uid}, #{layout_name}, #{layout_size}, #{layout_img});
+    </insert>
 </mapper>
 

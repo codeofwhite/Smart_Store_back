@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface RoomRepository {
     public List<RoomInfo> findAllRoom(long uid);
+
+    public List<RoomInfo> useLayoutFindRoom(long layout_id);
 }

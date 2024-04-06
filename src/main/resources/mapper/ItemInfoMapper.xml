@@ -5,5 +5,11 @@
     <select id="findAllItem" resultType="canglangpoxiao.smart_store_back.entity.ItemInfo">
         SELECT * FROM item_info WHERE uid = #{uid};
     </select>
+    <select id="useStgFindItem" resultType="canglangpoxiao.smart_store_back.entity.ItemInfo">
+        SELECT * FROM item_info WHERE stg_id = #{stg_id};
+    </select>
+    <delete id="deleteItem">
+        DELETE FROM item_info WHERE it_id = #{it_id};
+    </delete>
 </mapper>
 

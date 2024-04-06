@@ -18,4 +18,9 @@ public class RoomRepositoryImpl implements RoomRepository{
     public List<RoomInfo> findAllRoom(long uid) {
         return roomInfoMapper.findAllRoom(uid);
     }
+
+    @Override
+    public List<RoomInfo> useLayoutFindRoom(long layout_id) {
+        return roomInfoMapper.useLayoutFindRoom(layout_id);
+    }
 }

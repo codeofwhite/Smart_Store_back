@@ -9,4 +9,6 @@ public interface UserRepository {
     public void register(String u_tel, String upwd);
     public User login(String u_tel, String upwd);
 
+    public void updateUserImg(String u_img, long uid);
+
 }

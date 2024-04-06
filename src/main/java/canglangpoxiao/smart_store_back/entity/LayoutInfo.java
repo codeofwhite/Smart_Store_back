@@ -17,5 +17,6 @@ public class LayoutInfo {
   private long room_num;
   private long layout_fav;
   private long uid;
+  String layout_img;
 
 }

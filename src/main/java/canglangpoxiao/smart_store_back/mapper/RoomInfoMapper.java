@@ -9,4 +9,5 @@ import java.util.List;
 @Mapper
 public interface RoomInfoMapper {
     List<RoomInfo> findAllRoom(@Param("uid") long uid);
+    List<RoomInfo> useLayoutFindRoom(@Param("layout_id") long layout_id);
 }

@@ -19,6 +19,6 @@ public class ItemInfo {
   private long it_fav;
   String it_name;
   long uid;
-
+  String it_img;
 
 }

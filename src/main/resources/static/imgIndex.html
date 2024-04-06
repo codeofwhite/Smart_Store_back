@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>图片上传测试</title>
+</head>
+<body>
+<form id="uploadForm" enctype="multipart/form-data">
+    <input type="file" name="uploadfile" />
+    <input type="hidden" name="uid" value="123456" /> <!-- 假设的用户ID -->
+    <input type="button" value="上传图片" onclick="uploadImage()" />
+</form>
+
+<script>
+    function uploadImage() {
+        var formData = new FormData(document.getElementById('uploadForm'));
+        fetch('/uploadImg', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                alert('图片上传成功！');
+            })
+            .catch(error => {
+                console.error('上传出错:', error);
+                alert('图片上传失败！');
+            });
+    }
+</script>
+</body>
+</html>
