@@ -22,7 +22,6 @@ public class UpdateImgController {
 
         // Endpoint以杭州为例，其它Region请按实际情况填写。
         // 创建OSSClient实例。
-        OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
 
         // 上传文件流。
         InputStream inputStream = null;
@@ -46,7 +45,6 @@ public class UpdateImgController {
         // Endpoint以杭州为例，其它Region请按实际情况填写。
 
         // 创建OSSClient实例。
-        OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
 
         //1、输出测试
         System.out.println("==============");
