@@ -28,4 +28,11 @@ public class ItemRepositoryImpl implements ItemRepository {
     public void deleteItem(long it_id) {
         itemInfoMapper.deleteItem(it_id);
     }
+
+    @Override
+    public void insertItem(String it_name, long it_size, String it_type ,
+                           java.sql.Date best_before, java.sql.Date date_in_produced,
+                           String it_img, long stg_id, long uid) {
+        itemInfoMapper.insertItem(it_name,it_size,it_type,best_before,date_in_produced,it_img,stg_id,uid);
+    }
 }

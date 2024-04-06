@@ -15,4 +15,8 @@ public interface ItemInfoMapper {
 
     void deleteItem(@Param("it_id") long it_id);
 
+    void insertItem(@Param("it_name") String it_name,
+                    @Param("it_size") long it_size, @Param("it_type") String it_type ,
+                    @Param("best_before") java.sql.Date best_before,@Param("date_in_produced") java.sql.Date date_in_produced,
+                    @Param("it_img") String it_img, @Param("stg_id") long stg_id, @Param("uid") long uid);
 }
