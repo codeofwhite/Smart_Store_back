@@ -11,9 +11,9 @@ import java.util.List;
 public interface ItemInfoMapper {
     List<ItemInfo> findAllItem(@Param("uid") long uid);
 
-    List<ItemInfo> useStgFindItem(@Param("stg_id") long stg_id);
+    List<ItemInfo> useStgFindItem(@Param("stg_id") long stg_id, @Param("uid") long uid);
 
-    void deleteItem(@Param("it_id") long it_id);
+    void deleteItem(@Param("it_id") long it_id, @Param("uid") long uid);
 
     void insertItem(@Param("it_name") String it_name,
                     @Param("it_size") long it_size, @Param("it_type") String it_type ,

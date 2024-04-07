@@ -17,6 +17,7 @@ public class LayoutController {
     private LayoutRepository layoutRepository;
     //    private JdbcTemplate jdbcTemplate;
 
+    // 使用uid找到该用户拥有的布局
     @PostMapping("/findAllLayout")
     @ResponseBody
     public List<LayoutInfo> findAllLayout(@RequestParam long uid){
@@ -24,6 +25,7 @@ public class LayoutController {
         return  list;
     }
 
+    // 插入新的布局
     @PostMapping("/insertLayout")
     @ResponseBody
     public String insertLayout(long uid, String layout_name,

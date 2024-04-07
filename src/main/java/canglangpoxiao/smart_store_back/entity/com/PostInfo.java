@@ -17,5 +17,4 @@ public class PostInfo {
   private long uid;
   private long post_likes;
 
-
 }
