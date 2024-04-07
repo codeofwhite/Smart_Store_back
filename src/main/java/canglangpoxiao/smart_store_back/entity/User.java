@@ -14,7 +14,7 @@ public class User {
     String upwd;
     long usex;
     String u_signature;
-    long u_lvl;
+    long u_xp;
     long u_fam_num;
     long u_layout_num;
     long u_it_num;
