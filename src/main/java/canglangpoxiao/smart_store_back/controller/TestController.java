@@ -1,5 +1,6 @@
 package canglangpoxiao.smart_store_back.controller;
 
+import canglangpoxiao.smart_store_back.LoginDTO;
 import canglangpoxiao.smart_store_back.entity.User;
 import canglangpoxiao.smart_store_back.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ public class TestController {
     private UserRepository userRepository;
     //    private JdbcTemplate jdbcTemplate;
 
+    // 找到全部用户
     @RequestMapping(value = "/getUsers", method = RequestMethod.GET)
     @ResponseBody
     public List<User> findAll() {
@@ -22,6 +24,7 @@ public class TestController {
         return userList;
     }
 
+    // 注册
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody LoginDTO loginDTO) {  //复用，功能相同
         String u_tel = loginDTO.getUserTel();
@@ -36,6 +39,7 @@ public class TestController {
         }
     }
 
+    // 登录
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginDTO loginDTO) {
         String u_tel = loginDTO.getUserTel();

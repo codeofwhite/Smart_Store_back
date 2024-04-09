@@ -12,6 +12,7 @@ public class RoomController {
     @Autowired
     private RoomRepository roomRepository;
 
+    // 找到该用户拥有的全部room
     @RequestMapping(value = "/findAllRoom", method = RequestMethod.POST)
     @ResponseBody
     public List<RoomInfo> findAllRoom(@RequestParam long uid){

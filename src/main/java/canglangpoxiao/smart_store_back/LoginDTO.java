@@ -1,4 +1,4 @@
-package canglangpoxiao.smart_store_back.controller;
+package canglangpoxiao.smart_store_back;
 
 public class LoginDTO {
     private String u_tel;

@@ -12,8 +12,5 @@ public interface ItemRepository {
 
     public void deleteItem(long it_id, long uid);
 
-    public void insertItem(String it_name, long it_size, String it_type ,
-                           java.sql.Date best_before, java.sql.Date date_in_produced,
-                           String it_img, long stg_id, long uid);
-
+    public void insertItem(ItemInfo itemInfo);
 }

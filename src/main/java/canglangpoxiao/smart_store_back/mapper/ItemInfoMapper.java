@@ -4,6 +4,8 @@ import canglangpoxiao.smart_store_back.entity.ItemInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -15,8 +17,5 @@ public interface ItemInfoMapper {
 
     void deleteItem(@Param("it_id") long it_id, @Param("uid") long uid);
 
-    void insertItem(@Param("it_name") String it_name,
-                    @Param("it_size") long it_size, @Param("it_type") String it_type ,
-                    @Param("best_before") java.sql.Date best_before,@Param("date_in_produced") java.sql.Date date_in_produced,
-                    @Param("it_img") String it_img, @Param("stg_id") long stg_id, @Param("uid") long uid);
+    void insertItem(@RequestBody ItemInfo itemInfo);
 }

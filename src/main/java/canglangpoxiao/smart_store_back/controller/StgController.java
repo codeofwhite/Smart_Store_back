@@ -13,6 +13,7 @@ public class StgController {
     @Autowired
     private StgRepository stgRepository;
 
+    // 找到该用户拥有的全部stg
     @RequestMapping(value = "/findAllStg", method = RequestMethod.POST)
     @ResponseBody
     public List<StgInfo> findAllStg(@RequestParam long uid){
@@ -20,6 +21,7 @@ public class StgController {
         return list;
     }
 
+    // 使用room_id找到对应的stg
     @RequestMapping(value = "/useRoomFindStg", method = RequestMethod.POST)
     @ResponseBody
     public List<StgInfo> useRoomFindStg(@RequestParam long room_id){

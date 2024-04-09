@@ -9,6 +9,7 @@ public class PostController {
     @Autowired
     PostRepository postRepository;
 
+    // 用户发一篇新的post
     @RequestMapping(value = "/insertSelectedPost", method = RequestMethod.POST)
     @ResponseBody
     String insertSelectedPost(@RequestParam long post_id){

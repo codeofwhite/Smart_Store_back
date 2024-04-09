@@ -25,47 +25,33 @@ public class ItemController {
     //用stg_id找寻物品
     @RequestMapping(value = "/useStgFindItem", method = RequestMethod.POST)
     @ResponseBody
-    public List<ItemInfo> useStgFindItem(@RequestParam long stg_id, long uid){
+    public List<ItemInfo> useStgFindItem(@RequestParam long stg_id, @RequestParam long uid){
         List<ItemInfo> List = itemRepository.useStgFindItem(stg_id, uid);
         return List;
     }
     // 用it_id删除物品
     @RequestMapping(value = "/deleteItem", method = RequestMethod.POST)
     @ResponseBody
-    public String deleteItem(@RequestParam long it_id, long uid){
+    public String deleteItem(@RequestParam long it_id, @RequestParam long uid){
         itemRepository.deleteItem(it_id, uid);
         return "删除成功";
     }
-    // 插入物品
+    // 插入新物品，日期可以传过NULL，要传的话必须满足格式如——1000-01-01
     @RequestMapping(value = "/insertItem", method = RequestMethod.POST)
     @ResponseBody
-    public String insertItem(String it_name, long it_size, String it_type ,
-                             String best_before, String date_in_produced,
-                             String it_img, long stg_id, long uid){
+    public String insertItem(@RequestBody ItemInfo itemInfo){
 
-
-        Date best_before_t, date_in_produced_t;
-
-        if (Objects.equals(best_before, "")){
-            best_before_t = Date.valueOf("1000-01-01");
+        if (Objects.equals(itemInfo.getBest_before(), null)){
+            itemInfo.setBest_before(Date.valueOf("1000-01-01"));
         }
-        else {
-            best_before_t = Date.valueOf(best_before);
+        if(itemInfo.getIt_type() == null){
+            itemInfo.setIt_type("生活杂物");
         }
-        if (Objects.equals(date_in_produced, "")){
-            date_in_produced_t = Date.valueOf("1000-01-01");
-        }
-        else{
-            date_in_produced_t = Date.valueOf(date_in_produced);
-        }
-        if(it_type.isEmpty()){
-            it_type = "生活杂物";
-        }
-        if(it_img.isEmpty()){
-            it_img = "https://smartstorezzw.oss-cn-hangzhou.aliyuncs.com/ItemDefault.png";
+        if(itemInfo.getIt_img().isEmpty()){
+            itemInfo.setIt_img("https://smartstorezzw.oss-cn-hangzhou.aliyuncs.com/ItemDefault.png");
         }
 
-        itemRepository.insertItem(it_name,it_size,it_type,best_before_t,date_in_produced_t,it_img,stg_id,uid);
+        itemRepository.insertItem(itemInfo);
         return "插入成功";
     }
 }
