@@ -1,5 +1,11 @@
 package canglangpoxiao.smart_store_back;
 
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class LoginDTO {
     private String u_tel;
     private String upwd;
@@ -8,25 +14,8 @@ public class LoginDTO {
     public LoginDTO() {
     }
 
-    public LoginDTO(String u_tel, String userPassword) {
+    public LoginDTO(String u_tel, String upwd) {
         this.u_tel = u_tel;
-        this.upwd = userPassword;
-    }
-
-    // getter和setter方法
-    public String getUserTel() {
-        return u_tel;
-    }
-
-    public void setUserTel(String userTel) {
-        this.u_tel = userTel;
-    }
-
-    public String getPassword() {
-        return upwd;
-    }
-
-    public void setPassword(String userPassword) {
-        this.upwd = userPassword;
+        this.upwd = upwd;
     }
 }

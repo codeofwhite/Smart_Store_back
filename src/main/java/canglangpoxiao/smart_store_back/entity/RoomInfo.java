@@ -15,6 +15,7 @@ public class RoomInfo {
   private double room_size;
   private long uid;
   String room_img;
+  long room_fav;
 
 
 }

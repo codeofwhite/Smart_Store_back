@@ -15,6 +15,7 @@ public class StgInfo {
   private double stg_size;
   private long uid;
   String stg_img;
+  long stg_fav;
 
 
 }

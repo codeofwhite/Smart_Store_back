@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="canglangpoxiao.smart_store_back.mapper.RecordMapper">
+    <select id="rukuRecord" resultType="canglangpoxiao.smart_store_back.entity.Record">
+        SELECT layout_id ,layout_name, room_name, stg_name, it_name, uid, ruchu_time FROM record
+        WHERE layout_id in (SELECT layout_id FROM layout_info WHERE uid = #{uid}) AND in_flag = 1;
+    </select>
+    <select id="chukuRecord" resultType="canglangpoxiao.smart_store_back.entity.Record">
+        SELECT layout_id ,layout_name, room_name, stg_name, it_name, uid, ruchu_time FROM record
+        WHERE layout_id in (SELECT layout_id FROM layout_info WHERE uid = #{uid}) AND in_flag = 0;
+    </select>
+    <insert id="insertRuRecord">
+        INSERT INTO record(layout_id,layout_name,room_name,stg_name,it_name,uid,in_flag, ruchu_time, it_id)
+        VALUES (#{layout_id},#{layout_name},#{room_name},#{stg_name},#{it_name},#{uid},1, CURRENT_TIME, #{it_id});
+    </insert>
+    <update id="updateChuRecord">
+        UPDATE record SET in_flag = 0, ruchu_time = CURRENT_TIME WHERE uid = #{uid} AND it_id = #{it_id};
+    </update>
+</mapper>

@@ -4,6 +4,7 @@ package canglangpoxiao.smart_store_back.repository.Impl;
 
 
 import canglangpoxiao.smart_store_back.entity.User;
+import canglangpoxiao.smart_store_back.entity.UserPost;
 import canglangpoxiao.smart_store_back.mapper.UserMapper;
 import canglangpoxiao.smart_store_back.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,18 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public void updateUserImg(String u_img, long uid) {
         userMapper.updateUserImg(u_img, uid);
+    }
+
+    @Override
+    public List<User> getUserInfo(long uid) {
+        List<User> user = userMapper.getUserInfo(uid);
+        return user;
+    }
+
+    @Override
+    public List<UserPost> getPUserInfo(long uid) {
+        List<UserPost> list = userMapper.getPUserInfo(uid);
+        return list;
     }
 
 }

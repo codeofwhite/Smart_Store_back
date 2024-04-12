@@ -37,21 +37,4 @@ public class ItemController {
         return "删除成功";
     }
     // 插入新物品，日期可以传过NULL，要传的话必须满足格式如——1000-01-01
-    @RequestMapping(value = "/insertItem", method = RequestMethod.POST)
-    @ResponseBody
-    public String insertItem(@RequestBody ItemInfo itemInfo){
-
-        if (Objects.equals(itemInfo.getBest_before(), null)){
-            itemInfo.setBest_before(Date.valueOf("1000-01-01"));
-        }
-        if(itemInfo.getIt_type() == null){
-            itemInfo.setIt_type("生活杂物");
-        }
-        if(itemInfo.getIt_img().isEmpty()){
-            itemInfo.setIt_img("https://smartstorezzw.oss-cn-hangzhou.aliyuncs.com/ItemDefault.png");
-        }
-
-        itemRepository.insertItem(itemInfo);
-        return "插入成功";
-    }
 }
