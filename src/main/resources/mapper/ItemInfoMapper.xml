@@ -12,11 +12,8 @@
         DELETE FROM item_info WHERE it_id = #{it_id} and uid = #{uid};
     </delete>
     <insert id="insertItem" parameterType="canglangpoxiao.smart_store_back.entity.ItemInfo">
-        INSERT INTO item_info (`it_name`,`it_size`,`it_type`,`best_before`, `it_img`,`stg_id`, `uid`, `entry_time`)
-        VALUES (#{it_name},#{it_size},#{it_type},#{best_before},#{it_img},#{stg_id},#{uid},CURRENT_TIME);
+        INSERT INTO item_info (`it_name`,`it_size`,`it_type`,`best_before`, `it_img`,`stg_id`, `uid`, `entry_time`,`remark`)
+        VALUES (#{it_name},#{it_size},#{it_type},#{best_before},#{it_img},#{stg_id},#{uid},CURRENT_TIME,#{remark});
     </insert>
-    <select id="findFamilyItem" resultType="canglangpoxiao.smart_store_back.entity.ItemInfo">
-        SELECT it_name, stg_id, room_id, layout_id FROM it_info, stg_info, room_info WHERE uid = #{uid}
-    </select>
 </mapper>
 

@@ -20,5 +20,6 @@ public class ItemInfo {
   long uid;
   String it_img;
   private java.sql.Date entry_time;
+  String remark;
 
 }
