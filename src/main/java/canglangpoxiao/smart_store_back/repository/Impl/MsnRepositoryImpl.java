@@ -13,7 +13,17 @@ public class MsnRepositoryImpl implements MsnRepository {
 
 
     @Override
-    public void insertMsn(String msn_name, String msn_desc, long uid_msn_starter, long uid_assigned) {
-        msnInfoMapper.insertMsn(msn_name,   msn_desc,  uid_msn_starter,  uid_assigned);
+    public void insertMsn(String msn_name, String msn_desc, long uid_msn_starter) {
+        msnInfoMapper.insertMsn(msn_name,   msn_desc,  uid_msn_starter);
+    }
+
+    @Override
+    public void insertMsnFamily(String msn_name, long uid_assigned, long uid_msn_starter) {
+        msnInfoMapper.insertMsnFamily(msn_name,uid_assigned, uid_msn_starter);
+    }
+
+    @Override
+    public void updateMsnState(long msn_flag, String msn_name, long uid_msn_starter){
+        msnInfoMapper.updateMsnState(msn_flag,msn_name,uid_msn_starter);
     }
 }

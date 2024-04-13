@@ -26,10 +26,6 @@ public class MsnInfo{
      * 任务的发起者
      */
     private Integer uid_msn_starter;
-/**
-     * 任务的被指派者
-     */
-    private Integer uid_assigned;
 
 }
 

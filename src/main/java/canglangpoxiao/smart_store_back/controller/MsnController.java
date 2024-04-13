@@ -20,13 +20,5 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MsnController {
-    @Autowired
-    MsnRepository msnRepository;
 
-    @RequestMapping(value = "/insetMsn", method = RequestMethod.POST)
-    String insertMsn(@Param("msn_name") String msn_name, @Param("msn_desc") String msn_desc,
-                     @Param("uid_msn_starter") long uid_msn_starter, @Param("uid_assigned") long uid_assigned){
-        msnRepository.insertMsn(msn_name,   msn_desc,  uid_msn_starter,  uid_assigned);
-        return "插入成功";
-    }
 }
