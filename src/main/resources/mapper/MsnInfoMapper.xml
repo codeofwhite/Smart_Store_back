@@ -2,16 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="canglangpoxiao.smart_store_back.mapper.MsnInfoMapper">
+
     <!--插入新任务-->
     <insert id="insertMsn">
         INSERT INTO msn_info (msn_name,   msn_desc,  uid_msn_starter, msn_flag)
         VALUES (#{msn_name},   #{msn_desc},  #{uid_msn_starter}, 1);
     </insert>
 
+    <!--这边就是msn_id不知道哪里拿出来-->
     <!-- 插入 msn_family 表 -->
     <insert id="insertMsnFamily">
-        INSERT INTO msn_family (msn_name, uid_assigned, uid_msn_starter)
-        VALUES (#{msn_name}, #{uid_assigned}, #{uid_msn_starter})
+        INSERT INTO msn_family (msn_id ,msn_name, uid_assigned, uid_msn_starter)
+        VALUES (#{msn_id}, #{msn_name}, #{uid_assigned}, #{uid_msn_starter})
     </insert>
 
     <!--更新任务状态-->
@@ -21,12 +23,22 @@
 
     <!--编辑任务-->
     <update id="editMsn">
-
+        UPDATE msn_info SET msn_desc = #{msn_desc} WHERE msn_id = #{msn_id};
     </update>
 
     <!--清空所有自己发布的任务-->
     <delete id="deleteMsnByUid">
+        DELETE FROM msn_info WHERE uid = #{uid};
+    </delete>
 
+    <!--用uid拿到用户的全部msn_id-->
+    <select id="UidGetMsnId" resultType="canglangpoxiao.smart_store_back.entity.family.MsnInfo">
+        SELECT msn_id FROM msn_info WHERE uid_msn_starter = #{uid};
+    </select>
+
+    <!--用msn_id删除msn-->
+    <delete id="deleteOneMsn">
+        DELETE FROM msn_info WHERE msn_id = #{msn_id};
     </delete>
 
 </mapper>

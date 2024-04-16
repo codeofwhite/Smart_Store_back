@@ -1,8 +1,7 @@
 package canglangpoxiao.smart_store_back.repository;
 
 import canglangpoxiao.smart_store_back.entity.User;
-import canglangpoxiao.smart_store_back.entity.UserPost;
-import org.apache.ibatis.annotations.Param;
+import canglangpoxiao.smart_store_back.entity.com.UserPost;
 
 import java.util.List;
 

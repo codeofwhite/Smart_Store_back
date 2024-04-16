@@ -1,6 +1,6 @@
 package canglangpoxiao.smart_store_back.controller.forpage;
 
-import canglangpoxiao.smart_store_back.entity.UserPost;
+import canglangpoxiao.smart_store_back.entity.com.UserPost;
 import canglangpoxiao.smart_store_back.repository.UserRepository;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;

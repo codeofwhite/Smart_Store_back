@@ -1,7 +1,7 @@
 package canglangpoxiao.smart_store_back.mapper;
 
 import canglangpoxiao.smart_store_back.entity.User;
-import canglangpoxiao.smart_store_back.entity.UserPost;
+import canglangpoxiao.smart_store_back.entity.com.UserPost;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

@@ -9,5 +9,11 @@
         INSERT INTO layout_info (uid, layout_name, layout_size, layout_img)
         VALUES (#{uid}, #{layout_name}, #{layout_size}, #{layout_img});
     </insert>
+    <select id="getLayoutId">
+        SELECT layout_id FROM layout_family WHERE uid = #{uid};
+    </select>
+    <select id="getFamNum">
+        SELECT COUNT(uid) FROM layout_family WHERE layout_id = #{layout_id};
+    </select>
 </mapper>
 

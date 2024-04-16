@@ -1,4 +1,4 @@
-package canglangpoxiao.smart_store_back.entity;
+package canglangpoxiao.smart_store_back.entity.com;
 
 import lombok.*;
 

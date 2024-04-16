@@ -4,7 +4,7 @@ package canglangpoxiao.smart_store_back.repository.Impl;
 
 
 import canglangpoxiao.smart_store_back.entity.User;
-import canglangpoxiao.smart_store_back.entity.UserPost;
+import canglangpoxiao.smart_store_back.entity.com.UserPost;
 import canglangpoxiao.smart_store_back.mapper.UserMapper;
 import canglangpoxiao.smart_store_back.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

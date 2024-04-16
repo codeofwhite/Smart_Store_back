@@ -22,13 +22,6 @@ public class ItemController {
         List<ItemInfo> List = itemRepository.findAllItem(uid);
         return List;
     }
-    //用stg_id找寻物品
-    @RequestMapping(value = "/useStgFindItem", method = RequestMethod.POST)
-    @ResponseBody
-    public List<ItemInfo> useStgFindItem(@RequestParam long stg_id, @RequestParam long uid){
-        List<ItemInfo> List = itemRepository.useStgFindItem(stg_id, uid);
-        return List;
-    }
     // 用it_id删除物品
     @RequestMapping(value = "/deleteItem", method = RequestMethod.POST)
     @ResponseBody

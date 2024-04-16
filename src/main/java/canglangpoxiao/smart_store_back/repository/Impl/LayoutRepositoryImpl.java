@@ -22,4 +22,14 @@ public class LayoutRepositoryImpl implements LayoutRepository {
     public void insertLayout(long uid, String layout_name, long layout_size, String layout_img) {
         layoutInfoMapper.insertLayout(uid,layout_name,layout_size,layout_img);
     }
+
+    @Override
+    public List<LayoutInfo> getLayoutId(long uid) {
+        return layoutInfoMapper.getLayoutId(uid);
+    }
+
+    @Override
+    public long getFamNum(long layout_id) {
+        return layoutInfoMapper.getFamNum(layout_id);
+    }
 }

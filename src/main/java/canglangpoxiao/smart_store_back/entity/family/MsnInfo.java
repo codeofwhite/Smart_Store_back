@@ -1,6 +1,8 @@
-package canglangpoxiao.smart_store_back.entity;
+package canglangpoxiao.smart_store_back.entity.family;
 
 import lombok.*;
+
+import java.sql.Timestamp;
 
 /**
  * (MsnInfo)实体类
@@ -26,6 +28,10 @@ public class MsnInfo{
      * 任务的发起者
      */
     private Integer uid_msn_starter;
+
+    long layout_id;
+
+    Timestamp dispatch_time;
 
 }
 

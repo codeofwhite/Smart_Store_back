@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -21,8 +22,8 @@ public class ItemRepositoryImpl implements ItemRepository {
     }
 
     @Override
-    public List<ItemInfo> useStgFindItem(long stg_id, long uid) {
-        return itemInfoMapper.useStgFindItem(stg_id, uid);
+    public List<ItemInfo> useStgFindItem(long stg_id) {
+        return itemInfoMapper.useStgFindItem(stg_id);
     }
 
     @Override
@@ -33,5 +34,10 @@ public class ItemRepositoryImpl implements ItemRepository {
     @Override
     public void insertItem(ItemInfo itemInfo) {
         itemInfoMapper.insertItem(itemInfo);
+    }
+
+    @Override
+    public Date getBestBefore(long item_id) {
+        return itemInfoMapper.getBestBefore(item_id);
     }
 }

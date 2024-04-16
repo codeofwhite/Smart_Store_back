@@ -12,4 +12,8 @@ public interface LayoutInfoMapper {
 
     void insertLayout(@Param("uid") long uid, @Param("layout_name") String layout_name,
                       @Param("layout_size") long layout_size, @Param("layout_img") String layout_img);
+
+    List<LayoutInfo> getLayoutId(@Param("uid") long uid);
+
+    public long getFamNum(long layout_id);
 }
