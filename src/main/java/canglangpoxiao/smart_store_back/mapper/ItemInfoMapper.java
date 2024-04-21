@@ -1,5 +1,6 @@
 package canglangpoxiao.smart_store_back.mapper;
 
+import canglangpoxiao.smart_store_back.entity.ItAttribute;
 import canglangpoxiao.smart_store_back.entity.ItemInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -21,4 +22,10 @@ public interface ItemInfoMapper {
     void insertItem(@RequestBody ItemInfo itemInfo);
 
     Date getBestBefore(long item_id);
+
+    List<ItemInfo> findFavItem(@Param("layout_id") long layout_id);
+
+    long getItemNum(@Param("layout_id") long layout_id);
+    // 返回物品属性
+    ItAttribute getItemAttribute(String itemName);
 }

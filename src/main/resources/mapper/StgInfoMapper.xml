@@ -8,5 +8,11 @@
     <select id="useRoomFindStg" resultType="canglangpoxiao.smart_store_back.entity.StgInfo">
         SELECT * FROM stg_info WHERE room_id = #{room_id};
     </select>
+    <select id="findFavStg" resultType="canglangpoxiao.smart_store_back.entity.StgInfo">
+        SELECT * FROM stg_info WHERE layout_id = #{layout_id} AND stg_fav = 1;
+    </select>
+    <select id="getStgNum">
+        SELECT COUNT(stg_id) FROM stg_info WHERE layout_id = #{layout_id};
+    </select>
 </mapper>
 

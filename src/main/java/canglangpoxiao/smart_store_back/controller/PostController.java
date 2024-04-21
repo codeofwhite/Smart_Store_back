@@ -16,4 +16,12 @@ public class PostController {
         postRepository.insertSelectedPost(post_id);
         return  "插入成功";
     }
+
+    // 用户喜欢一个post，加入user_like
+    @RequestMapping(value = "/insertLikePost", method = RequestMethod.POST)
+    @ResponseBody
+    String insertLikePost(@RequestParam long post_id, @RequestParam long uid){
+        postRepository.insertLikePost(post_id,uid);
+        return  "插入成功";
+    }
 }

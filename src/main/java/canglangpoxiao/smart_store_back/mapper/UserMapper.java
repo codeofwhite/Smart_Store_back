@@ -4,6 +4,8 @@ import canglangpoxiao.smart_store_back.entity.User;
 import canglangpoxiao.smart_store_back.entity.com.UserPost;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -25,4 +27,6 @@ public interface UserMapper {
 
     // 得到用户post页面需要的
     List<UserPost> getPUserInfo(@Param("uid") long uid);
+
+    public void updateUserInfo(String uname, String u_img, String u_signature, String u_xp, long uid);
 }

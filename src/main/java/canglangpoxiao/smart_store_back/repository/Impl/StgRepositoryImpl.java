@@ -22,4 +22,14 @@ public class StgRepositoryImpl implements StgRepository {
     public List<StgInfo> useRoomFindStg(long room_id) {
         return stgInfoMapper.useRoomFindStg(room_id);
     }
+
+    @Override
+    public List<StgInfo> findFavStg(long layout_id) {
+        return stgInfoMapper.findFavStg(layout_id);
+    }
+
+    @Override
+    public long getStgNum(long layout_id) {
+        return stgInfoMapper.getStgNum(layout_id);
+    }
 }

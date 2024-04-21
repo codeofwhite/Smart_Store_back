@@ -1,5 +1,6 @@
 package canglangpoxiao.smart_store_back.repository.Impl;
 
+import canglangpoxiao.smart_store_back.entity.ItAttribute;
 import canglangpoxiao.smart_store_back.entity.ItemInfo;
 import canglangpoxiao.smart_store_back.mapper.ItemInfoMapper;
 import canglangpoxiao.smart_store_back.repository.ItemRepository;
@@ -39,5 +40,20 @@ public class ItemRepositoryImpl implements ItemRepository {
     @Override
     public Date getBestBefore(long item_id) {
         return itemInfoMapper.getBestBefore(item_id);
+    }
+
+    @Override
+    public List<ItemInfo> findFavItem(long layout_id) {
+        return itemInfoMapper.findFavItem(layout_id);
+    }
+
+    @Override
+    public long getItemNum(long layout_id) {
+        return itemInfoMapper.getItemNum(layout_id);
+    }
+
+    @Override
+    public ItAttribute getItemAttribute(String itemName) {
+        return itemInfoMapper.getItemAttribute(itemName);
     }
 }

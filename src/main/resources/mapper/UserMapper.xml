@@ -19,11 +19,30 @@
     </update>
     <!--扫出用户页面的信息-->
     <select id="getUserInfo" resultType="canglangpoxiao.smart_store_back.entity.User">
-        SELECT uname, uid, u_signature, u_xp, usex FROM user_info WHERE uid = #{uid};
+        SELECT uname, u_signature, u_xp, u_fam_num, u_layout_num, u_it_num, u_online, u_img, u_tel FROM user_info WHERE uid = #{uid};
     </select>
     <!--扫出用户POST页面的信息-->
     <select id="getPUserInfo" resultType="canglangpoxiao.smart_store_back.entity.com.UserPost">
         SELECT u_post_num,u_fans_num,ulikes FROM user_post WHERE uid = #{uid};
     </select>
+    <update id="updateUserInfo">
+        UPDATE user_info
+        <set>
+            <if test="u_img != null">
+                u_img = #{u_img},
+            </if>
+            <if test="uname != null">
+                uname = #{uname},
+            </if>
+            <if test="u_signature != null">
+                u_signature = #{u_signature},
+            </if>
+            <if test="u_xp != null">
+                u_xp = #{u_xp},
+            </if>
+            update_time = CURRENT_TIMESTAMP
+        </set>
+        WHERE uid = #{uid};
+    </update>
 </mapper>
 

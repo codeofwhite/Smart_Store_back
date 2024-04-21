@@ -23,4 +23,9 @@ public class PostRepositoryImp implements PostRepository {
         List<PostInfo> list = postInfoMapper.scrollPost();
         return list;
     }
+
+    @Override
+    public void insertLikePost(long post_id, long uid) {
+        postInfoMapper.insertLikePost(post_id,uid);
+    }
 }

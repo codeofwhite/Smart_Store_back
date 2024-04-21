@@ -1,10 +1,12 @@
 package canglangpoxiao.smart_store_back.controller.forpage;
 
+import canglangpoxiao.smart_store_back.entity.User;
 import canglangpoxiao.smart_store_back.entity.com.UserPost;
 import canglangpoxiao.smart_store_back.repository.UserRepository;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 

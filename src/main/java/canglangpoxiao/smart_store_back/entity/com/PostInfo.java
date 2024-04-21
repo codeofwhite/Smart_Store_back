@@ -10,6 +10,7 @@ import lombok.*;
 public class PostInfo {
 
   private long post_id;
+  String post_name;
   private String post_media;
   private String post_detail;
   private java.sql.Timestamp post_rls_time;

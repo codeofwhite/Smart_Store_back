@@ -13,5 +13,9 @@
     <select id="scrollPost" resultType="canglangpoxiao.smart_store_back.entity.com.PostInfo">
         SELECT post_name, uid, post_likes, post_media FROM post_info LIMIT 20;
     </select>
+    <!--插入用户点赞表-->
+    <insert id="insertLikePost">
+        INSERT INTO user_like(uid, post_id) VALUES (#{uid},#{post_id});
+    </insert>
 </mapper>
 

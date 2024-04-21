@@ -11,4 +11,8 @@ public interface StgInfoMapper {
     List<StgInfo> findAllStg(@Param("uid") long uid);
 
     List<StgInfo> useRoomFindStg(@Param("room_id") long room_id);
+
+    List<StgInfo> findFavStg(@Param("layout_id") long layout_id);
+
+    long getStgNum(@Param("layout_id") long layout_id);
 }

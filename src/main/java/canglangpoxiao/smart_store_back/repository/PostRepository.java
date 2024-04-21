@@ -9,4 +9,6 @@ public interface PostRepository {
     public void insertSelectedPost(long post_id);
 
     public List<PostInfo> scrollPost();
+
+    void insertLikePost(long post_id, long uid);
 }

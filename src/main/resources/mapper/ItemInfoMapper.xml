@@ -6,17 +6,26 @@
         SELECT * FROM item_info WHERE uid = #{uid};
     </select>
     <select id="useStgFindItem" resultType="canglangpoxiao.smart_store_back.entity.ItemInfo">
-        SELECT item_id FROM item_info WHERE stg_id = #{stg_id};
+        SELECT * FROM item_info WHERE stg_id = #{stg_id};
     </select>
     <delete id="deleteItem">
         DELETE FROM item_info WHERE it_id = #{it_id} and uid = #{uid};
     </delete>
     <insert id="insertItem" parameterType="canglangpoxiao.smart_store_back.entity.ItemInfo">
-        INSERT INTO item_info (`it_name`,`it_size`,`it_type`,`best_before`, `it_img`,`stg_id`, `uid`, `entry_time`,`remark`)
-        VALUES (#{it_name},#{it_size},#{it_type},#{best_before},#{it_img},#{stg_id},#{uid},CURRENT_TIME,#{remark});
+        INSERT INTO item_info (`it_name`,`it_size`,`it_type`,`best_before`, `it_img`,`stg_id`, `uid`, `entry_time`,`remark`, layout_id, room_id)
+        VALUES (#{it_name},#{it_size},#{it_type},#{best_before},#{it_img},#{stg_id},#{uid},CURRENT_TIME,#{remark}, #{layout_id}, #{room_id});
     </insert>
     <select id="getBestBefore">
         SELECT best_before FROM item_info WHERE it_id = #{it_id};
+    </select>
+    <select id="findFavItem" resultType="canglangpoxiao.smart_store_back.entity.ItemInfo">
+        SELECT * FROM item_info WHERE layout_id = #{layout_id} AND it_fav = 1;
+    </select>
+    <select id="getItemNum">
+        SELECT COUNT(it_id) FROM item_info WHERE layout_id = #{layout_id};
+    </select>
+    <select id="getItemAttribute">
+        SELECT `keyword`,`space`, `size`, `urgn`, `buty`, `freq`, `ligt`, `wter` FROM it_attribute WHERE keyword = #{keyword};
     </select>
 </mapper>
 

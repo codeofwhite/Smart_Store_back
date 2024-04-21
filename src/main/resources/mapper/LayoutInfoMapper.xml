@@ -10,10 +10,10 @@
         VALUES (#{uid}, #{layout_name}, #{layout_size}, #{layout_img});
     </insert>
     <select id="getLayoutId">
-        SELECT layout_id FROM layout_family WHERE uid = #{uid};
+        SELECT DISTINCT(layout_id) FROM layout_family WHERE uid = #{uid};
     </select>
     <select id="getFamNum">
-        SELECT COUNT(uid) FROM layout_family WHERE layout_id = #{layout_id};
+        SELECT COUNT(DISTINCT(uid)) FROM layout_family WHERE layout_id = #{layout_id};
     </select>
 </mapper>
 

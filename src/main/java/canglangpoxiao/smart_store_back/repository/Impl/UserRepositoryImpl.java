@@ -9,6 +9,7 @@ import canglangpoxiao.smart_store_back.mapper.UserMapper;
 import canglangpoxiao.smart_store_back.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -44,6 +45,11 @@ public class UserRepositoryImpl implements UserRepository {
     public List<UserPost> getPUserInfo(long uid) {
         List<UserPost> list = userMapper.getPUserInfo(uid);
         return list;
+    }
+
+    @Override
+    public void updateUserInfo(String uname, String u_img, String u_signature, String u_xp, long uid) {
+        userMapper.updateUserInfo(uname,u_img,u_signature,u_xp,uid);
     }
 
 }

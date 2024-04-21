@@ -1,6 +1,21 @@
+<!-- GET请求示例 -->
+<!DOCTYPE html>
 <html>
+<head>
+    <title>XHR GET Example</title>
+</head>
 <body>
-<h1>hello word!!!</h1>
-<p>this is a html page</p>
+<script>
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://120.26.248.74:8080/getUsers', true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            const response = JSON.parse(xhr.responseText);
+            console.log(response);
+        }
+    };
+    xhr.send();
+</script>
 </body>
 </html>
+
