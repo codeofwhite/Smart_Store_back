@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -13,16 +14,24 @@ public class renwulanController {
     @Autowired
     MsnRepository msnRepository;
 
+    // 拉取任务
+    @RequestMapping(value = "/selectMsn", method = RequestMethod.POST)
+    // 刷新任务
+    List<MsnInfo> selectMsn(@RequestParam("layout_id") long layout_id){
+        return msnRepository.selectMsn(layout_id);
+    }
+
     // 添加新任务
     @RequestMapping(value = "/insetMsn", method = RequestMethod.POST)
     String insertMsn(@Param("msn_name") String msn_name, @Param("msn_desc") String msn_desc,
-                     @Param("uid_msn_starter") long uid_msn_starter, @Param("uid_assigned") long uid_assigned){
-        msnRepository.insertMsn(msn_name, msn_desc, uid_msn_starter);
+                     @Param("uid_msn_starter") long uid_msn_starter, @Param("uid_assigned") long uid_assigned
+            , Date dispatch_time, long layout_id){
+        msnRepository.insertMsn(msn_name, msn_desc, uid_assigned, uid_msn_starter, dispatch_time, layout_id);
         // 这边要改
         return "插入成功";
     }
 
-    // 增加派遣人员
+    // 增加派遣人员（当需要继续派遣多于一位人员时）
     @RequestMapping(value = "/insertMsnFamily", method = RequestMethod.POST)
     String insertMsnFamily(@Param("msn_id") long msn_id, @Param("msn_name") String msn_name,
                      @Param("uid_msn_starter") long uid_msn_starter, @Param("uid_assigned") long uid_assigned){
@@ -40,16 +49,9 @@ public class renwulanController {
 
     // 编辑任务描述
     @RequestMapping(value = "/editMsn", method = RequestMethod.POST)
-    String editMsn(@RequestParam String msn_desc,@RequestParam long msn_id){
+    String editMsn(@RequestParam long msn_id, String msn_desc, long msn_flag, long uid_assigned){
         msnRepository.editMsn(msn_desc,msn_id);
         return "编辑成功";
-    }
-
-    // 调整任务状态
-    @RequestMapping(value = "/updateMsnState", method = RequestMethod.POST)
-    String updateMsnState(long msn_flag, String msn_name, long uid_msn_starter){
-        msnRepository.updateMsnState(msn_flag,msn_name,uid_msn_starter);
-        return "更新成功";
     }
 
     //获取用户作为发布者所发布的所有任务的msn_id
@@ -62,7 +64,10 @@ public class renwulanController {
 
     //
     @RequestMapping(value = "/deleteOneMsn", method = RequestMethod.POST)
-    String deleteOneMsn(@Param("uid_msn_starter") long uid_msn_starter){
+    String deleteOneMsn(@Param("msn_id") long msn_id)
+    {
+        msnRepository.deleteOneMsn(msn_id);
         return "删除成功";
+
     }
 }

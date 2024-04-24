@@ -4,6 +4,7 @@ package canglangpoxiao.smart_store_back.repository.Impl;
 
 
 import canglangpoxiao.smart_store_back.entity.User;
+import canglangpoxiao.smart_store_back.entity.com.PostInfo;
 import canglangpoxiao.smart_store_back.entity.com.UserPost;
 import canglangpoxiao.smart_store_back.mapper.UserMapper;
 import canglangpoxiao.smart_store_back.repository.UserRepository;
@@ -50,6 +51,16 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public void updateUserInfo(String uname, String u_img, String u_signature, String u_xp, long uid) {
         userMapper.updateUserInfo(uname,u_img,u_signature,u_xp,uid);
+    }
+
+    @Override
+    public void inviteFamily(long uid, String invite_code) {
+        userMapper.inviteFamily(uid, invite_code);
+    }
+
+    @Override
+    public String acceptInvite(String invite_code) {
+        return userMapper.acceptInvite(invite_code);
     }
 
 }

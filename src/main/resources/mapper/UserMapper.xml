@@ -23,7 +23,7 @@
     </select>
     <!--扫出用户POST页面的信息-->
     <select id="getPUserInfo" resultType="canglangpoxiao.smart_store_back.entity.com.UserPost">
-        SELECT u_post_num,u_fans_num,ulikes FROM user_post WHERE uid = #{uid};
+        SELECT * FROM user_post WHERE uid = #{uid};
     </select>
     <update id="updateUserInfo">
         UPDATE user_info
@@ -44,5 +44,11 @@
         </set>
         WHERE uid = #{uid};
     </update>
+    <insert id="inviteFamily">
+        INSERT INTO invite_family(invite_code, uid) VALUES (#{invite_code},#{uid});
+    </insert>
+    <select id="acceptInvite">
+        CALL DeleteInviteFamilyRowByCode(#{invite_code});
+    </select>
 </mapper>
 

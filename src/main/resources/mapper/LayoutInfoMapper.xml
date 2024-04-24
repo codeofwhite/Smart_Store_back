@@ -5,12 +5,27 @@
     <select id="findAllLayout" resultType="canglangpoxiao.smart_store_back.entity.LayoutInfo">
         SELECT * FROM layout_info WHERE uid = #{uid};
     </select>
+
     <insert id="insertLayout">
         INSERT INTO layout_info (uid, layout_name, layout_size, layout_img)
         VALUES (#{uid}, #{layout_name}, #{layout_size}, #{layout_img});
     </insert>
+    <!--找到最后一条插入-->
+    <select id="selectLastInsertId">
+        SELECT LAST_INSERT_ID() as id;
+    </select>
+    <!--插入进layout_family表-->
+    <insert id="insertLayoutFamily">
+        INSERT INTO layout_family(uid, layout_id)
+        VALUES (#{uid}, #{id});
+    </insert>
+
+
     <select id="getLayoutId">
-        SELECT DISTINCT(layout_id) FROM layout_family WHERE uid = #{uid};
+        SELECT DISTINCT li.layout_id, layout_name, layout_size, layout_img
+        FROM layout_info li
+                 INNER JOIN layout_family lf
+                            ON li.layout_id = lf.layout_id WHERE lf.uid = #{uid};
     </select>
     <select id="getFamNum">
         SELECT COUNT(DISTINCT(uid)) FROM layout_family WHERE layout_id = #{layout_id};

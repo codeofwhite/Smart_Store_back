@@ -14,5 +14,10 @@
     <select id="getStgNum">
         SELECT COUNT(stg_id) FROM stg_info WHERE layout_id = #{layout_id};
     </select>
+
+    <insert id="insertStg">
+        INSERT INTO stg_info (uid,stg_name,room_id,layout_id)
+        VALUES (#{uid}, #{stg_name}, #{room_id}, #{layout_id});
+    </insert>
 </mapper>
 

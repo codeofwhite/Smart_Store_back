@@ -8,5 +8,10 @@
     <select id="useLayoutFindRoom" resultType="canglangpoxiao.smart_store_back.entity.RoomInfo">
         SELECT * FROM room_info WHERE layout_id = #{layout_id};
     </select>
+
+    <insert id="insertRoom">
+        INSERT INTO room_info (uid, room_name, layout_id)
+        VALUES (#{uid}, #{room_name}, #{layout_id});
+    </insert>
 </mapper>
 

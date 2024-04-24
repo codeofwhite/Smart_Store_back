@@ -24,6 +24,16 @@ public class LayoutRepositoryImpl implements LayoutRepository {
     }
 
     @Override
+    public long selectLastInsertId() {
+        return layoutInfoMapper.selectLastInsertId();
+    }
+
+    @Override
+    public void insertLayoutFamily(long uid, long id) {
+        layoutInfoMapper.insertLayoutFamily(uid,id);
+    }
+
+    @Override
     public List<LayoutInfo> getLayoutId(long uid) {
         return layoutInfoMapper.getLayoutId(uid);
     }

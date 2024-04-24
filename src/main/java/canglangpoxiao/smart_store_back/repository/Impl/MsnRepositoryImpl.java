@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
 import java.util.List;
 
 @Repository
@@ -16,8 +17,9 @@ public class MsnRepositoryImpl implements MsnRepository {
 
 
     @Override
-    public void insertMsn(String msn_name, String msn_desc, long uid_msn_starter) {
-        msnInfoMapper.insertMsn(msn_name,   msn_desc,  uid_msn_starter);
+    public void insertMsn(String msn_name, String msn_desc, long uid_assigned, long uid_msn_starter,
+                          Date dispatch_time, long layout_id) {
+        msnInfoMapper.insertMsn(msn_name, msn_desc, uid_assigned, uid_msn_starter, dispatch_time, layout_id);
     }
 
     @Override
@@ -36,12 +38,6 @@ public class MsnRepositoryImpl implements MsnRepository {
     }
 
     @Override
-    public List<MsnInfo> UidGetMsnId(long uid) {
-        List<MsnInfo> list =  msnInfoMapper.UidGetMsnId(uid);
-        return list;
-    }
-
-    @Override
     public void deleteOneMsn(long msn_id){
         msnInfoMapper.deleteOneMsn(msn_id);
     }
@@ -49,5 +45,10 @@ public class MsnRepositoryImpl implements MsnRepository {
     @Override
     public void deleteMsnByUid(long uid_msn_starter){
         msnInfoMapper.deleteMsnByUid(uid_msn_starter);
+    }
+
+    @Override
+    public List<MsnInfo> selectMsn(long layout_id) {
+        return msnInfoMapper.selectMsn(layout_id);
     }
 }

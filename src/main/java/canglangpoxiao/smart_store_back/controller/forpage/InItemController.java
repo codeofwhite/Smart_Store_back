@@ -22,11 +22,28 @@ public class InItemController {
         if (Objects.equals(itemInfo.getBest_before(), null)){
             itemInfo.setBest_before(Date.valueOf("1000-01-01"));
         }
-        if(itemInfo.getIt_type() == null){
+        if(itemInfo.getIt_type() != null) {
+            if (itemInfo.getIt_type().isEmpty()) {
+                itemInfo.setIt_type("生活杂物");
+            }
+        }
+        else {
             itemInfo.setIt_type("生活杂物");
         }
-        if(itemInfo.getIt_img().isEmpty()){
+        if(itemInfo.getIt_img() != null){
+            if(itemInfo.getIt_img().isEmpty()){
+                itemInfo.setIt_img("https://smartstorezzw.oss-cn-hangzhou.aliyuncs.com/ItemDefault.png");
+            }
+        }
+        else {
             itemInfo.setIt_img("https://smartstorezzw.oss-cn-hangzhou.aliyuncs.com/ItemDefault.png");
+        }
+        if(itemInfo.getRemark() != null) {
+            if (itemInfo.getRemark().isEmpty()) {
+                itemInfo.setRemark("没有特殊标注");
+            }
+        }else{
+            itemInfo.setRemark("没有特殊标注");
         }
 
         itemRepository.insertItem(itemInfo);

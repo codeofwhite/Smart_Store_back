@@ -28,4 +28,15 @@ public class PostRepositoryImp implements PostRepository {
     public void insertLikePost(long post_id, long uid) {
         postInfoMapper.insertLikePost(post_id,uid);
     }
+
+
+    @Override
+    public List<PostInfo> getUserShared(long uid) {
+        return postInfoMapper.getUserShared(uid);
+    }
+
+    @Override
+    public List<PostInfo> getUserLiked(long uid) {
+        return postInfoMapper.getUserLiked(uid);
+    }
 }

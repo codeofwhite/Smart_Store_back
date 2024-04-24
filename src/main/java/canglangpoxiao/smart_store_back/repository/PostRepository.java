@@ -11,4 +11,9 @@ public interface PostRepository {
     public List<PostInfo> scrollPost();
 
     void insertLikePost(long post_id, long uid);
+
+
+    List<PostInfo> getUserShared(long uid);
+
+    List<PostInfo> getUserLiked(long uid);
 }

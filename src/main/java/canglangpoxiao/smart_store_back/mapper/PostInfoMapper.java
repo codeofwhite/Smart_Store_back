@@ -14,4 +14,9 @@ public interface PostInfoMapper {
     public List<PostInfo> scrollPost();
 
     void insertLikePost(long post_id, long uid);
+
+
+    List<PostInfo> getUserShared(@Param("uid") long uid);
+
+    List<PostInfo> getUserLiked(@Param("uid") long uid);
 }

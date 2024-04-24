@@ -23,4 +23,9 @@ public class RoomRepositoryImpl implements RoomRepository{
     public List<RoomInfo> useLayoutFindRoom(long layout_id) {
         return roomInfoMapper.useLayoutFindRoom(layout_id);
     }
+
+    @Override
+    public void insertRoom(long uid, String room_name, long layout_id) {
+        roomInfoMapper.insertRoom(uid, room_name, layout_id);
+    }
 }

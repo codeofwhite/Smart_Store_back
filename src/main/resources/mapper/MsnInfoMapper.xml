@@ -3,10 +3,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="canglangpoxiao.smart_store_back.mapper.MsnInfoMapper">
 
+    <!--扫出任务-->
+    <select id="selectMsn">
+        SELECT * FROM msn_info WHERE layout_id = #{layout_id}
+    </select>
+
     <!--插入新任务-->
     <insert id="insertMsn">
-        INSERT INTO msn_info (msn_name,   msn_desc,  uid_msn_starter, msn_flag)
-        VALUES (#{msn_name},   #{msn_desc},  #{uid_msn_starter}, 1);
+        INSERT INTO msn_info (msn_name,   msn_desc,  uid_msn_starter, msn_flag, dispatch_time, uid_assigned, layout_id)
+        VALUES (#{msn_name},   #{msn_desc},  #{uid_msn_starter}, 1, #{dispatch_time}, #{uid_assigned}, layout_id);
     </insert>
 
     <!--这边就是msn_id不知道哪里拿出来-->
@@ -23,7 +28,19 @@
 
     <!--编辑任务-->
     <update id="editMsn">
-        UPDATE msn_info SET msn_desc = #{msn_desc} WHERE msn_id = #{msn_id};
+        UPDATE msn_info
+        <set>
+            <if test="msn_desc != null">
+                msn_desc = #{msn_desc},
+            </if>
+            <if test="msn_flag != null">
+                msn_flag = #{msn_flag},
+            </if>
+            <if test="uid_assigned != null">
+                uid_assigned = #{uid_assigned},
+            </if>
+        </set>
+        WHERE msn_id = #{msn_id};
     </update>
 
     <!--清空所有自己发布的任务-->

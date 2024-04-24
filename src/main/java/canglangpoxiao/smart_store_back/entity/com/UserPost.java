@@ -27,5 +27,7 @@ public class UserPost implements Serializable {
 
     private Long ulikes;
 
+    long u_follow_num;
+
 }
 

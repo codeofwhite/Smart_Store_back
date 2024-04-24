@@ -17,5 +17,15 @@
     <insert id="insertLikePost">
         INSERT INTO user_like(uid, post_id) VALUES (#{uid},#{post_id});
     </insert>
+    <!--得到用户分享过的帖子，缩略图-->
+    <select id="getUserShared">
+        SELECT pi.post_id, pi.post_name, pi.post_likes, pi.post_media, pi.post_detail, pi.post_rls_time FROM user_shared us
+                                                                   INNER JOIN post_info pi on us.post_id = pi.post_id WHERE us.uid = #{uid};
+    </select>
+    <!--得到用户点赞的贴子-->
+    <select id="getUserLiked">
+        SELECT pi.post_id, pi.post_name, pi.post_likes, pi.post_media, pi.post_detail, pi.post_rls_time FROM user_like ul
+                                                                   INNER JOIN post_info pi on ul.post_id = pi.post_id WHERE ul.uid = #{uid};
+    </select>
 </mapper>
 

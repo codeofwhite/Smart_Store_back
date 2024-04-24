@@ -11,6 +11,10 @@ public interface LayoutRepository {
     void insertLayout( long uid, String layout_name,
                       long layout_size, String layout_img);
 
+    long selectLastInsertId();
+
+    void insertLayoutFamily(long uid, long id);
+
     // 搜寻页面的layout_id
     List<LayoutInfo> getLayoutId(long uid);
 

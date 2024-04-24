@@ -16,4 +16,8 @@ public interface LayoutInfoMapper {
     List<LayoutInfo> getLayoutId(@Param("uid") long uid);
 
     public long getFamNum(long layout_id);
+
+    void insertLayoutFamily(long uid, long id);
+    long selectLastInsertId();
+
 }

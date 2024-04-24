@@ -1,6 +1,7 @@
 package canglangpoxiao.smart_store_back.repository;
 
 import canglangpoxiao.smart_store_back.entity.User;
+import canglangpoxiao.smart_store_back.entity.com.PostInfo;
 import canglangpoxiao.smart_store_back.entity.com.UserPost;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,4 +21,8 @@ public interface UserRepository {
     List<UserPost> getPUserInfo(long uid);
 
     void updateUserInfo(String uname, String u_img, String u_signature, String u_xp, long uid);
+
+    void inviteFamily(@Param("uid") long uid, String invite_code);
+
+    String acceptInvite(@Param("invite_code") String invite_code);
 }
