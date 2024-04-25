@@ -50,5 +50,8 @@
     <select id="acceptInvite">
         CALL DeleteInviteFamilyRowByCode(#{invite_code});
     </select>
+    <select id="usePhoneGetUid">
+        SELECT uid FROM user_info WHERE u_tel = #{u_tel};
+    </select>
 </mapper>
 

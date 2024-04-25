@@ -7,6 +7,7 @@ import canglangpoxiao.smart_store_back.repository.ItemRepository;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 import java.util.List;
@@ -55,5 +56,15 @@ public class ItemRepositoryImpl implements ItemRepository {
     @Override
     public ItAttribute getItemAttribute(String itemName) {
         return itemInfoMapper.getItemAttribute(itemName);
+    }
+
+    @Override
+    public void ChuItem(long it_id) {
+        itemInfoMapper.ChuItem(it_id);
+    }
+
+    @Override
+    public void updateItemImg(String it_img, long it_id) {
+        itemInfoMapper.updateItemImg(it_img, it_id);
     }
 }

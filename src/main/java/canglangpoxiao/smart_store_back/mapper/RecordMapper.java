@@ -9,11 +9,14 @@ import java.util.List;
 
 @Mapper
 public interface RecordMapper {
-    List<Record> rukuRecord(@Param("uid") long uid);
-    List<Record> chukuRecord(@Param("uid") long uid);
+    List<Record> rukuRecord(@Param("layout_id") long layout_id);
+    List<Record> chukuRecord(@Param("layout_id") long layout_id);
 
     void insertRuRecord(RecordDTO recordDTO);
 
     // 更新出库记录
     void updateChuRecord(@Param("uid") long uid, @Param("it_id") long it_id);
+
+    // 删除七天前
+    public void delete7DAgo();
 }

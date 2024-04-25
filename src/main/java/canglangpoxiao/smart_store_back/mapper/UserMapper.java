@@ -35,4 +35,6 @@ public interface UserMapper {
 
     String acceptInvite(@Param("invite_code") String invite_code);
 
+    long usePhoneGetUid(long u_tel);
+
 }

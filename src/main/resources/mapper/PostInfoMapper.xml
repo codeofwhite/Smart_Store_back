@@ -2,6 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="canglangpoxiao.smart_store_back.mapper.PostInfoMapper">
+    <!--插入新推文-->
+    <insert id="addNewPost">
+        INSERT INTO post_info (post_media, post_name, post_detail, uid)
+        VALUES (#{post_media},#{post_name},#{post_detail},#{uid});
+    </insert>
+
+    <insert id="insertShared">
+        INSERT INTO user_shared (uid, post_id)
+        VALUES (#{uid}, #{post_id});
+    </insert>
+
+    <!--找到最后一条插入-->
+    <select id="selectLastPostInsertId">
+        SELECT LAST_INSERT_ID() as id;
+    </select>
+
     <!--精选推文-->
     <select id="insertSelectedPost" resultType="canglangpoxiao.smart_store_back.entity.com.PostInfo">
         {CALL sp_test(
@@ -27,5 +43,18 @@
         SELECT pi.post_id, pi.post_name, pi.post_likes, pi.post_media, pi.post_detail, pi.post_rls_time FROM user_like ul
                                                                    INNER JOIN post_info pi on ul.post_id = pi.post_id WHERE ul.uid = #{uid};
     </select>
+
+    <!--加点赞数-->
+    <update id="addPostLike">
+        UPDATE post_info
+        SET post_likes = post_likes + 1
+        WHERE post_id = #{post_id};
+    </update>
+
+    <!--获取帖子的详细信息-->
+    <select id="getPostDetail">
+        SELECT * FROM post_info WHERE post_id = #{post_id};
+    </select>
+
 </mapper>
 

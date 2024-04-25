@@ -25,4 +25,6 @@ public interface UserRepository {
     void inviteFamily(@Param("uid") long uid, String invite_code);
 
     String acceptInvite(@Param("invite_code") String invite_code);
+
+    long usePhoneGetUid(long u_tel);
 }

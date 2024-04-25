@@ -14,14 +14,14 @@ public class RecordRepositoryImpl implements RecordRepository {
     @Autowired
     RecordMapper recordMapper;
     @Override
-    public List<Record> rukuRecord(long uid) {
-        List<Record> list = recordMapper.rukuRecord(uid);
+    public List<Record> rukuRecord(long layout_id) {
+        List<Record> list = recordMapper.rukuRecord(layout_id);
         return list;
     }
 
     @Override
-    public List<Record> chukuRecord(long uid) {
-        List<Record> list = recordMapper.chukuRecord(uid);
+    public List<Record> chukuRecord(long layout_id) {
+        List<Record> list = recordMapper.chukuRecord(layout_id);
         return list;
     }
 
@@ -33,5 +33,10 @@ public class RecordRepositoryImpl implements RecordRepository {
     @Override
     public void updateChuRecord(long uid, long it_id) {
         recordMapper.updateChuRecord(uid,it_id);
+    }
+
+    @Override
+    public void delete7DAgo() {
+        recordMapper.delete7DAgo();
     }
 }

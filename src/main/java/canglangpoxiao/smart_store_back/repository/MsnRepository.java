@@ -8,13 +8,12 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public interface MsnRepository {
-    void insertMsn(String msn_name, String msn_desc, long uid_assigned, long uid_msn_starter, Date dispatch_time, long layout_id);
+    void insertMsn(String msn_name, String msn_desc, String uid_assigned, long uid_msn_starter, Date dispatch_time, long layout_id);
 
-    void insertMsnFamily(long msn_id, String msn_name, long uid_assigned, long uid_msn_starter);
+    long selectLastMsnInsertId();
 
-    void editMsn(String msn_desc, long msn_id);
+    void editMsn(long msn_id, String msn_name, String msn_desc, long msn_flag);
 
-    List<MsnInfo> UidGetMsnId(long uid);
 
     void deleteOneMsn(long msn_id);
 

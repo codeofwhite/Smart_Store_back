@@ -2,6 +2,7 @@ package canglangpoxiao.smart_store_back.controller.forpage;
 
 import canglangpoxiao.smart_store_back.RecordDTO;
 import canglangpoxiao.smart_store_back.entity.Record;
+import canglangpoxiao.smart_store_back.repository.ItemRepository;
 import canglangpoxiao.smart_store_back.repository.RecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +14,14 @@ public class rukujiluController {
 
     @Autowired
     RecordRepository recordRepository;
+    @Autowired
+    ItemRepository itemRepository;
+
     // 查询入库记录
     @PostMapping("/rukuRecord")
     @ResponseBody
-    public List<Record> rukuRecord(long uid) {
-        List<Record> list = recordRepository.rukuRecord(uid);
+    public List<Record> rukuRecord(long layout_id) {
+        List<Record> list = recordRepository.rukuRecord(layout_id);
         return list;
     }
 
@@ -31,8 +35,8 @@ public class rukujiluController {
     // 查询出库记录
     @PostMapping("/chukuRecord")
     @ResponseBody
-    public List<Record> chukuRecord(long uid) {
-        List<Record> list = recordRepository.rukuRecord(uid);
+    public List<Record> chukuRecord(long layout_id) {
+        List<Record> list = recordRepository.chukuRecord(layout_id);
         return list;
     }
 
@@ -45,5 +49,25 @@ public class rukujiluController {
         System.out.println(it_id);
         recordRepository.updateChuRecord(uid,it_id);
         return "出库成功";
+    }
+
+    // 出库
+    @PostMapping("/ChuItem")
+    @ResponseBody
+    public String ChuItem(@RequestParam long it_id, @RequestParam long uid)
+    {
+        System.out.println(it_id);
+        recordRepository.updateChuRecord(uid,it_id);
+        itemRepository.ChuItem(it_id);
+        return "出库成功";
+    }
+
+    // 删除七天前的任务
+    @GetMapping("/delete7DAgo")
+    @ResponseBody
+    public String delete7DAgo()
+    {
+        recordRepository.delete7DAgo();
+        return "删除成功";
     }
 }

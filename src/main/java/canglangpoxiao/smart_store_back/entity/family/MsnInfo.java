@@ -33,5 +33,7 @@ public class MsnInfo{
 
     Timestamp dispatch_time;
 
+    String uid_assigned;
+
 }
 

@@ -12,25 +12,12 @@ import java.util.Objects;
 public class LayoutController {
     @Autowired
     private LayoutRepository layoutRepository;
-    //    private JdbcTemplate jdbcTemplate;
 
-    // 使用uid找到该用户拥有的布局
-    @PostMapping("/findAllLayout")
+    @RequestMapping(value = "/useLayoutGetUid", method = RequestMethod.POST)
     @ResponseBody
-    public List<LayoutInfo> findAllLayout(@RequestParam long uid){
-        List<LayoutInfo> list = layoutRepository.findAllLayout(uid);
-        return  list;
-    }
-
-    // 插入新的布局
-    @PostMapping("/insertLayout")
-    @ResponseBody
-    public String insertLayout(@RequestParam long uid,  @RequestParam String layout_name,
-                               @RequestParam long layout_size, String layout_img){
-        if(Objects.equals(layout_img, "")){
-            layout_img = "https://smartstorezzw.oss-cn-hangzhou.aliyuncs.com/LayoutDefault.png";
-        }
-        layoutRepository.insertLayout(uid, layout_name, layout_size, layout_img);
-        return "插入成功";
+    // 返回这个Layout下的uid
+    List<Long> useLayoutGetUid(long layout_id){
+        List<Long> list = layoutRepository.useLayoutGetUid(layout_id);
+        return list;
     }
 }

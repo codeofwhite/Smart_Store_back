@@ -42,4 +42,9 @@ public class LayoutRepositoryImpl implements LayoutRepository {
     public long getFamNum(long layout_id) {
         return layoutInfoMapper.getFamNum(layout_id);
     }
+
+    @Override
+    public List<Long> useLayoutGetUid(long layout_id) {
+        return layoutInfoMapper.useLayoutGetUid(layout_id);
+    }
 }

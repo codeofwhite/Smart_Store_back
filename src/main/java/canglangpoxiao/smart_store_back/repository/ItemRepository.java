@@ -4,6 +4,7 @@ import canglangpoxiao.smart_store_back.entity.ItAttribute;
 import canglangpoxiao.smart_store_back.entity.ItemInfo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 import java.util.List;
@@ -26,4 +27,8 @@ public interface ItemRepository {
 
     // 查询物品属性成分
     ItAttribute getItemAttribute(String itemName);
+
+    void ChuItem(long it_id);
+
+    void updateItemImg(String it_img, long it_id);
 }

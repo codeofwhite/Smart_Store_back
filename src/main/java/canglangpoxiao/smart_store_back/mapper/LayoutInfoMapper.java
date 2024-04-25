@@ -20,4 +20,6 @@ public interface LayoutInfoMapper {
     void insertLayoutFamily(long uid, long id);
     long selectLastInsertId();
 
+    List<Long> useLayoutGetUid(long layout_id);
+
 }

@@ -72,4 +72,11 @@ public class UserController {
         ossClient.shutdown();
         return "更新成功";
     }
+
+    // 根据手机号获得uid
+    @PostMapping("/usePhoneGetUid")
+    @ResponseBody
+    long usePhoneGetUid(long u_tel){
+        return userRepositoryl.usePhoneGetUid(u_tel);
+    }
 }

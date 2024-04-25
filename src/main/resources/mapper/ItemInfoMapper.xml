@@ -31,5 +31,11 @@
     <select id="getItemAttribute">
         SELECT `keyword`,`space`, `size`, `urgn`, `buty`, `freq`, `ligt`, `wter` FROM it_attribute WHERE keyword = #{keyword};
     </select>
+    <update id="ChuItem">
+        DELETE FROM item_info WHERE it_id = #{it_id};
+    </update>
+    <update id="updateItemImg">
+        UPDATE item_info SET it_img = #{it_img} WHERE it_id = #{it_id};
+    </update>
 </mapper>
 

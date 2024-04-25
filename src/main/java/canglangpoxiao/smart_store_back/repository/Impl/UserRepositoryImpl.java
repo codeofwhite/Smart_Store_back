@@ -63,4 +63,9 @@ public class UserRepositoryImpl implements UserRepository {
         return userMapper.acceptInvite(invite_code);
     }
 
+    @Override
+    public long usePhoneGetUid(long u_tel) {
+        return userMapper.usePhoneGetUid(u_tel);
+    }
+
 }

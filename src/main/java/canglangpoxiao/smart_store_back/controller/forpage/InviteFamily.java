@@ -30,7 +30,7 @@ public class InviteFamily {
 
         userRepository.inviteFamily(uid,inviteCode.toString());
 
-        return "fuck";
+        return inviteCode.toString();
     }
 
     @PostMapping("/acceptInvite")

@@ -1,11 +1,18 @@
 package canglangpoxiao.smart_store_back.controller.forpage;
 
+import canglangpoxiao.smart_store_back.RecordDTO;
 import canglangpoxiao.smart_store_back.entity.ItAttribute;
 import canglangpoxiao.smart_store_back.entity.ItemInfo;
 import canglangpoxiao.smart_store_back.repository.ItemRepository;
+import canglangpoxiao.smart_store_back.repository.RecordRepository;
+import com.aliyun.oss.OSS;
+import com.aliyun.oss.OSSClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +22,9 @@ import java.util.Objects;
 public class InItemController {
     @Autowired
     private ItemRepository itemRepository;
+    @Autowired
+    RecordRepository recordRepository;
+
     @RequestMapping(value = "/insertItem", method = RequestMethod.POST)
     @ResponseBody
     public String insertItem(@RequestBody ItemInfo itemInfo){
@@ -48,6 +58,40 @@ public class InItemController {
 
         itemRepository.insertItem(itemInfo);
         return "插入成功";
+    }
+
+    // 上传物品图片
+    @PostMapping("/updateItemImg")
+    @ResponseBody
+    public String updateItemImg(MultipartFile it_img, long it_id) throws IOException {
+        // Endpoint以杭州为例，其它Region请按实际情况填写。
+        String endpoint = "http://oss-cn-hangzhou.aliyuncs.com";
+        // 云账号AccessKey有所有API访问权限，建议遵循阿里云安全最佳实践，创建并使用RAM子账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建。
+        String accessKeyId = "LTAI5tNsiEWTM57UKJPfypJQ";
+        String accessKeySecret = "e2qNeyRn5OGFoh4b6ZX2JRAWNPlEql";
+        // 创建OSSClient实例。
+        OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
+
+
+        String it_imgString;
+        if("".equals(it_img)){
+            it_imgString = "https://smartstorezzw.oss-cn-hangzhou.aliyuncs.com/ItemDefault.png";
+        } else if (it_img == null) {
+            it_imgString = "https://smartstorezzw.oss-cn-hangzhou.aliyuncs.com/ItemDefault.png";
+        } else {
+            //2、将上传的图片存储到云端
+            InputStream inputStream = it_img.getInputStream();
+            // 获取当前时间
+            java.util.Date date = new java.util.Date();
+            ossClient.putObject("smartstorezzw", date + ".jpg", inputStream);
+            it_imgString = "https://smartstorezzw.oss-cn-hangzhou.aliyuncs.com/" + date + ".jpg";
+        }
+
+        itemRepository.updateItemImg(it_imgString,it_id);
+
+        // 关闭OSSClient。
+        ossClient.shutdown();
+        return "更新成功";
     }
 
     @RequestMapping(value = "/getItemAttribute", method = RequestMethod.POST)

@@ -19,4 +19,6 @@ public interface LayoutRepository {
     List<LayoutInfo> getLayoutId(long uid);
 
     public long getFamNum(long layout_id);
+
+    List<Long> useLayoutGetUid(long layout_id);
 }

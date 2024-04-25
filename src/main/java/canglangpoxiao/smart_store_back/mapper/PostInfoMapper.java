@@ -19,4 +19,15 @@ public interface PostInfoMapper {
     List<PostInfo> getUserShared(@Param("uid") long uid);
 
     List<PostInfo> getUserLiked(@Param("uid") long uid);
+
+    // 发布新帖子
+    void addNewPost(String post_media, String post_name, String post_detail, long uid);
+
+    long selectLastPostInsertId();
+
+    void addPostLike(long post_id);
+
+    void insertShared(long uid, long post_id);
+
+    public List<PostInfo> getPostDetail(long post_id);
 }

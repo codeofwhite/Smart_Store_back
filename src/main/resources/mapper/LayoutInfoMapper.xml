@@ -30,5 +30,10 @@
     <select id="getFamNum">
         SELECT COUNT(DISTINCT(uid)) FROM layout_family WHERE layout_id = #{layout_id};
     </select>
+
+    <!--用layout拿到uid-->
+    <select id="useLayoutGetUid">
+        SELECT DISTINCT(uid) FROM layout_family WHERE layout_id = #{layout_id};
+    </select>
 </mapper>
 
