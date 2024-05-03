@@ -46,5 +46,29 @@ public class PostController {
         List<PostInfo> list =postRepository.getPostDetail(post_id);
         return list;
     }
+    // 删除帖子
+    @PostMapping("/deletePost")
+    String deletePost(long post_id){
+        postRepository.deletePost(post_id);
+        return "删除成功";
+    }
+
+    // 移除收藏的/喜欢的帖子
+    @PostMapping("/deleteLikedPost")
+    String deleteLikedPost(long post_id, long uid){
+        postRepository.deleteLikedPost(post_id, uid);
+        return "删除成功";
+    }
+
+    // 判断用户是否对该帖子点赞。
+    @PostMapping("/whetherLikeOrNot")
+    long whetherLikeOrNot(long post_id, long uid){
+        long count = postRepository.whetherLikeOrNot(post_id, uid);
+        if(count > 1){
+            count = 1;
+        }
+        return count;
+    }
+
 
 }

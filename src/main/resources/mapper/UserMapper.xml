@@ -45,7 +45,7 @@
         WHERE uid = #{uid};
     </update>
     <insert id="inviteFamily">
-        INSERT INTO invite_family(invite_code, uid) VALUES (#{invite_code},#{uid});
+        INSERT INTO invite_family(invite_code, uid, layout_id) VALUES (#{invite_code},#{uid},#{layout_id});
     </insert>
     <select id="acceptInvite">
         CALL DeleteInviteFamilyRowByCode(#{invite_code});

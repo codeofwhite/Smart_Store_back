@@ -31,9 +31,9 @@ public interface UserMapper {
 
     public void updateUserInfo(String uname, String u_img, String u_signature, String u_xp, long uid);
 
-    void inviteFamily(@Param("uid") long uid, @Param("invite_code") String invite_code);
+    void inviteFamily(@Param("uid") long uid, @Param("invite_code") String invite_code, long layout_id);
 
-    String acceptInvite(@Param("invite_code") String invite_code);
+    Long acceptInvite(@Param("invite_code") String invite_code);
 
     long usePhoneGetUid(long u_tel);
 

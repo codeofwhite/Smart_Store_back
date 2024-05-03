@@ -1,10 +1,12 @@
 package canglangpoxiao.smart_store_back.controller.forpage;
 
 import canglangpoxiao.smart_store_back.RecordDTO;
+import canglangpoxiao.smart_store_back.RecordReturn;
 import canglangpoxiao.smart_store_back.entity.Record;
 import canglangpoxiao.smart_store_back.repository.ItemRepository;
 import canglangpoxiao.smart_store_back.repository.RecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,8 +22,10 @@ public class rukujiluController {
     // 查询入库记录
     @PostMapping("/rukuRecord")
     @ResponseBody
-    public List<Record> rukuRecord(long layout_id) {
-        List<Record> list = recordRepository.rukuRecord(layout_id);
+    @Cacheable("inRecordList")
+    public List<RecordReturn> rukuRecord(long layout_id) {
+        System.out.println(layout_id);
+        List<RecordReturn> list = recordRepository.rukuRecord(layout_id);
         return list;
     }
 
@@ -35,8 +39,10 @@ public class rukujiluController {
     // 查询出库记录
     @PostMapping("/chukuRecord")
     @ResponseBody
-    public List<Record> chukuRecord(long layout_id) {
-        List<Record> list = recordRepository.chukuRecord(layout_id);
+    @Cacheable("outRecordList")
+    public List<RecordReturn> chukuRecord(long layout_id) {
+        System.out.println(layout_id);
+        List<RecordReturn> list = recordRepository.chukuRecord(layout_id);
         return list;
     }
 

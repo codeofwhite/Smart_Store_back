@@ -1,6 +1,7 @@
 package canglangpoxiao.smart_store_back.repository.Impl;
 
 import canglangpoxiao.smart_store_back.RecordDTO;
+import canglangpoxiao.smart_store_back.RecordReturn;
 import canglangpoxiao.smart_store_back.entity.Record;
 import canglangpoxiao.smart_store_back.mapper.RecordMapper;
 import canglangpoxiao.smart_store_back.repository.RecordRepository;
@@ -14,14 +15,14 @@ public class RecordRepositoryImpl implements RecordRepository {
     @Autowired
     RecordMapper recordMapper;
     @Override
-    public List<Record> rukuRecord(long layout_id) {
-        List<Record> list = recordMapper.rukuRecord(layout_id);
+    public List<RecordReturn> rukuRecord(long layout_id) {
+        List<RecordReturn> list = recordMapper.rukuRecord(layout_id);
         return list;
     }
 
     @Override
-    public List<Record> chukuRecord(long layout_id) {
-        List<Record> list = recordMapper.chukuRecord(layout_id);
+    public List<RecordReturn> chukuRecord(long layout_id) {
+        List<RecordReturn> list = recordMapper.chukuRecord(layout_id);
         return list;
     }
 

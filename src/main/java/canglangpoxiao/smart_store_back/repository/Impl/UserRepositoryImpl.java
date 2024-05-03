@@ -54,12 +54,12 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void inviteFamily(long uid, String invite_code) {
-        userMapper.inviteFamily(uid, invite_code);
+    public void inviteFamily(long uid, String invite_code , long layout_id) {
+        userMapper.inviteFamily(uid, invite_code, layout_id);
     }
 
     @Override
-    public String acceptInvite(String invite_code) {
+    public Long acceptInvite(String invite_code) {
         return userMapper.acceptInvite(invite_code);
     }
 

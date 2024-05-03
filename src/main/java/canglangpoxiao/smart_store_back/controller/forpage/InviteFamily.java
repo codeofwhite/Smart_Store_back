@@ -1,6 +1,7 @@
 package canglangpoxiao.smart_store_back.controller.forpage;
 
 import canglangpoxiao.smart_store_back.entity.com.PostInfo;
+import canglangpoxiao.smart_store_back.repository.LayoutRepository;
 import canglangpoxiao.smart_store_back.repository.UserRepository;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,12 @@ import java.util.Random;
 public class InviteFamily {
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    LayoutRepository layoutRepository;
 
     @PostMapping("/inviteFamily")
     @ResponseBody
-    String inviteFamily(@Param("uid") long uid){
+    String inviteFamily(@Param("uid") long uid, long layout_id){
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         StringBuilder inviteCode = new StringBuilder();
         Random rnd = new Random();
@@ -28,20 +31,22 @@ public class InviteFamily {
             inviteCode.append(characters.charAt(index));
         }
 
-        userRepository.inviteFamily(uid,inviteCode.toString());
+        userRepository.inviteFamily(uid,inviteCode.toString(),layout_id);
 
         return inviteCode.toString();
     }
 
     @PostMapping("/acceptInvite")
     @ResponseBody
-    String acceptInvite(@Param("invite_code") String invite_code){
-        String uid_copy = userRepository.acceptInvite(invite_code);
-        if(uid_copy == null){
-            return "fail";
+    Long acceptInvite(@Param("invite_code") String invite_code, long uid){
+        Long layout_id = userRepository.acceptInvite(invite_code);
+        System.out.println(layout_id);
+        if(layout_id == null){
+            return null;
         }
         else{
-            return uid_copy;
+            layoutRepository.insertLayoutFamily(uid,layout_id);
+            return layout_id;
         }
     }
 }

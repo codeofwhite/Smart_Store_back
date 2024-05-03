@@ -64,4 +64,19 @@ public class PostRepositoryImp implements PostRepository {
     public List<PostInfo> getPostDetail(long post_id) {
         return postInfoMapper.getPostDetail(post_id);
     }
+
+    @Override
+    public void deletePost(long post_id) {
+        postInfoMapper.deletePost(post_id);
+    }
+
+    @Override
+    public void deleteLikedPost(long post_id, long uid) {
+        postInfoMapper.deleteLikedPost(post_id, uid);
+    }
+
+    @Override
+    public long whetherLikeOrNot(long post_id, long uid) {
+        return postInfoMapper.whetherLikeOrNot(post_id,uid);
+    }
 }

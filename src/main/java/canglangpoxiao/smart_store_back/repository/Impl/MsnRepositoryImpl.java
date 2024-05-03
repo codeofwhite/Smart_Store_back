@@ -16,22 +16,26 @@ public class MsnRepositoryImpl implements MsnRepository {
     MsnInfoMapper msnInfoMapper;
 
 
+    // 插入新的任务
     @Override
     public void insertMsn(String msn_name, String msn_desc, String uid_assigned, long uid_msn_starter,
                           Date dispatch_time, long layout_id) {
         msnInfoMapper.insertMsn(msn_name, msn_desc, uid_assigned, uid_msn_starter, dispatch_time, layout_id);
     }
 
+    // 辅助，得到msn_id
     @Override
     public long selectLastMsnInsertId(){
         return msnInfoMapper.selectLastMsnInsertId();
     }
 
+    // 编辑任务
     @Override
     public void editMsn(long msn_id, String msn_name, String msn_desc, long msn_flag) {
         msnInfoMapper.editMsn(msn_id, msn_name, msn_desc, msn_flag);
     }
 
+    // 删除一个任务，用msn_id
     @Override
     public void deleteOneMsn(long msn_id){
         msnInfoMapper.deleteOneMsn(msn_id);

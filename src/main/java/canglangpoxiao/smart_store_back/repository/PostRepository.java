@@ -27,4 +27,12 @@ public interface PostRepository {
     void insertShared(long uid, long post_id);
 
     public List<PostInfo> getPostDetail(long post_id);
+
+    void deletePost(long post_id);
+
+    // 移除收藏的/喜欢的帖子
+    void deleteLikedPost(long post_id, long uid);
+
+    // 判断用户是否对该帖子点赞
+    long whetherLikeOrNot(long post_id, long uid);
 }

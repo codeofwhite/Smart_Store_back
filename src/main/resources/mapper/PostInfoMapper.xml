@@ -8,6 +8,7 @@
         VALUES (#{post_media},#{post_name},#{post_detail},#{uid});
     </insert>
 
+    <!--插入用户的分享表-->
     <insert id="insertShared">
         INSERT INTO user_shared (uid, post_id)
         VALUES (#{uid}, #{post_id});
@@ -25,19 +26,23 @@
               )
         }
     </select>
+
     <!--下滑刷新出来的条数-->
     <select id="scrollPost" resultType="canglangpoxiao.smart_store_back.entity.com.PostInfo">
-        SELECT post_name, uid, post_likes, post_media FROM post_info LIMIT 20;
+        SELECT * FROM post_info ORDER BY post_rls_time LIMIT 30;
     </select>
+
     <!--插入用户点赞表-->
     <insert id="insertLikePost">
         INSERT INTO user_like(uid, post_id) VALUES (#{uid},#{post_id});
     </insert>
+
     <!--得到用户分享过的帖子，缩略图-->
     <select id="getUserShared">
         SELECT pi.post_id, pi.post_name, pi.post_likes, pi.post_media, pi.post_detail, pi.post_rls_time FROM user_shared us
                                                                    INNER JOIN post_info pi on us.post_id = pi.post_id WHERE us.uid = #{uid};
     </select>
+
     <!--得到用户点赞的贴子-->
     <select id="getUserLiked">
         SELECT pi.post_id, pi.post_name, pi.post_likes, pi.post_media, pi.post_detail, pi.post_rls_time FROM user_like ul
@@ -55,6 +60,22 @@
     <select id="getPostDetail">
         SELECT * FROM post_info WHERE post_id = #{post_id};
     </select>
+
+    <!--删除自己发布的帖子-->
+    <delete id="deletePost">
+        DELETE FROM post_info WHERE post_id = #{post_id};
+    </delete>
+
+    <!--删除自己收藏/喜欢的帖子-->
+    <delete id="deleteLikedPost">
+        DELETE FROM user_like WHERE post_id = #{post_id} AND uid = #{uid};
+    </delete>
+    
+    <!--判断用户是否对该帖子点赞-->
+    <select id="whetherLikeOrNot">
+        SELECT COUNT(*) FROM user_like WHERE post_id = #{post_id} AND uid = #{uid}
+    </select>
+
 
 </mapper>
 

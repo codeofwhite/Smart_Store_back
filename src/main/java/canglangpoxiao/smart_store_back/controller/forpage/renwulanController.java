@@ -5,6 +5,7 @@ import canglangpoxiao.smart_store_back.repository.MsnRepository;
 import jakarta.transaction.Transactional;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.beans.Transient;
@@ -18,8 +19,9 @@ public class renwulanController {
 
     // 拉取任务
     @RequestMapping(value = "/selectMsn", method = RequestMethod.POST)
+    @Cacheable("msnList")
     // 刷新任务
-    List<MsnInfo> selectMsn(@RequestParam("layout_id") long layout_id){
+    public List<MsnInfo> selectMsn(@RequestParam("layout_id") long layout_id){
         return msnRepository.selectMsn(layout_id);
     }
 
