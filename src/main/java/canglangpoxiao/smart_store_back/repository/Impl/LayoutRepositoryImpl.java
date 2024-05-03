@@ -4,6 +4,7 @@ import canglangpoxiao.smart_store_back.entity.LayoutInfo;
 import canglangpoxiao.smart_store_back.mapper.LayoutInfoMapper;
 import canglangpoxiao.smart_store_back.repository.LayoutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class LayoutRepositoryImpl implements LayoutRepository {
         return layoutInfoMapper.findAllLayout(uid);
     }
 
+    @Async
     @Override
     public void insertLayout(long uid, String layout_name, long layout_size, String layout_img) {
         layoutInfoMapper.insertLayout(uid,layout_name,layout_size,layout_img);
@@ -28,6 +30,7 @@ public class LayoutRepositoryImpl implements LayoutRepository {
         return layoutInfoMapper.selectLastInsertId();
     }
 
+    @Async
     @Override
     public void insertLayoutFamily(long uid, long id) {
         layoutInfoMapper.insertLayoutFamily(uid,id);

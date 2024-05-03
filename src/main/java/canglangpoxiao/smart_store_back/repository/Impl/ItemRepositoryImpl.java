@@ -6,6 +6,7 @@ import canglangpoxiao.smart_store_back.mapper.ItemInfoMapper;
 import canglangpoxiao.smart_store_back.repository.ItemRepository;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,11 +29,13 @@ public class ItemRepositoryImpl implements ItemRepository {
         return itemInfoMapper.useStgFindItem(stg_id);
     }
 
+    @Async
     @Override
     public void deleteItem(long it_id, long uid) {
         itemInfoMapper.deleteItem(it_id, uid);
     }
 
+    @Async
     @Override
     public void insertItem(ItemInfo itemInfo) {
         itemInfoMapper.insertItem(itemInfo);
@@ -58,11 +61,13 @@ public class ItemRepositoryImpl implements ItemRepository {
         return itemInfoMapper.getItemAttribute(itemName);
     }
 
+    @Async
     @Override
     public void ChuItem(long it_id) {
         itemInfoMapper.ChuItem(it_id);
     }
 
+    @Async
     @Override
     public void updateItemImg(String it_img, long it_id) {
         itemInfoMapper.updateItemImg(it_img, it_id);

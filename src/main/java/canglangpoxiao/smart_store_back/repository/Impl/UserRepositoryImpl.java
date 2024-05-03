@@ -9,6 +9,7 @@ import canglangpoxiao.smart_store_back.entity.com.UserPost;
 import canglangpoxiao.smart_store_back.mapper.UserMapper;
 import canglangpoxiao.smart_store_back.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,6 +32,7 @@ public class UserRepositoryImpl implements UserRepository {
         return userMapper.login(u_tel,upwd);
     }
 
+    @Async
     @Override
     public void updateUserImg(String u_img, long uid) {
         userMapper.updateUserImg(u_img, uid);

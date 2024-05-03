@@ -5,6 +5,7 @@ import canglangpoxiao.smart_store_back.mapper.PostInfoMapper;
 import canglangpoxiao.smart_store_back.repository.PostRepository;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,11 +25,11 @@ public class PostRepositoryImp implements PostRepository {
         return list;
     }
 
+    @Async
     @Override
     public void insertLikePost(long post_id, long uid) {
         postInfoMapper.insertLikePost(post_id,uid);
     }
-
 
     @Override
     public List<PostInfo> getUserShared(long uid) {
@@ -50,11 +51,13 @@ public class PostRepositoryImp implements PostRepository {
         return postInfoMapper.selectLastPostInsertId();
     }
 
+    @Async
     @Override
     public void addPostLike(long post_id) {
         postInfoMapper.addPostLike(post_id);
     }
 
+    @Async
     @Override
     public void insertShared(long uid, long post_id) {
         postInfoMapper.insertShared(uid ,post_id);
@@ -70,6 +73,7 @@ public class PostRepositoryImp implements PostRepository {
         postInfoMapper.deletePost(post_id);
     }
 
+    @Async
     @Override
     public void deleteLikedPost(long post_id, long uid) {
         postInfoMapper.deleteLikedPost(post_id, uid);
