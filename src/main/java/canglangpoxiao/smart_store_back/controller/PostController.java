@@ -26,10 +26,10 @@ public class PostController {
     @Transactional
     @RequestMapping(value = "/insertLikePost", method = RequestMethod.POST)
     @ResponseBody
-    String insertLikePost(@RequestParam long post_id, @RequestParam long uid){
+    long insertLikePost(@RequestParam long post_id, @RequestParam long uid){
         postRepository.addPostLike(post_id);
         postRepository.insertLikePost(post_id,uid);
-        return  "插入成功";
+        return  1;
     }
 
     // 用户发一篇新的post加入精选

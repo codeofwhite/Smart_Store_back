@@ -5,6 +5,7 @@ import canglangpoxiao.smart_store_back.mapper.PostInfoMapper;
 import canglangpoxiao.smart_store_back.repository.PostRepository;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 

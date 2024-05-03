@@ -5,6 +5,7 @@ import canglangpoxiao.smart_store_back.mapper.MsnInfoMapper;
 import canglangpoxiao.smart_store_back.repository.MsnRepository;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 

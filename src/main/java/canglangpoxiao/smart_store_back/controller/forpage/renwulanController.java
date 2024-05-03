@@ -19,7 +19,6 @@ public class renwulanController {
 
     // 拉取任务
     @RequestMapping(value = "/selectMsn", method = RequestMethod.POST)
-    @Cacheable("msnList")
     // 刷新任务
     public List<MsnInfo> selectMsn(@RequestParam("layout_id") long layout_id){
         return msnRepository.selectMsn(layout_id);

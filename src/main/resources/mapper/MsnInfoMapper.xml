@@ -11,7 +11,7 @@
     <!--插入新任务-->
     <insert id="insertMsn">
         INSERT INTO msn_info (msn_name,   msn_desc,  uid_msn_starter, msn_flag, dispatch_time, uid_assigned, layout_id)
-        VALUES (#{msn_name},   #{msn_desc},  #{uid_msn_starter}, 1, #{dispatch_time}, #{uid_assigned}, layout_id);
+        VALUES (#{msn_name},   #{msn_desc},  #{uid_msn_starter}, 1, #{dispatch_time}, #{uid_assigned}, #{layout_id});
     </insert>
 
     <!--找到最后一条插入-->
