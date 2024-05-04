@@ -46,5 +46,10 @@
         DELETE FROM msn_info WHERE msn_id = #{msn_id};
     </delete>
 
+    <!--用msn_id得到对应的layout_id-->
+    <select id="msnIdGetLayoutId">
+        SELECT layout_id FROM msn_info WHERE msn_id = #{msn_id};
+    </select>
+
 </mapper>
 

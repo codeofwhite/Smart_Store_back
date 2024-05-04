@@ -5,6 +5,7 @@ import canglangpoxiao.smart_store_back.mapper.MsnInfoMapper;
 import canglangpoxiao.smart_store_back.repository.MsnRepository;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
@@ -20,6 +21,7 @@ public class MsnRepositoryImpl implements MsnRepository {
 
     // 插入新的任务
     @Override
+    @CacheEvict(value = "msnCache",key = "#layout_id")
     public void insertMsn(String msn_name, String msn_desc, String uid_assigned, long uid_msn_starter,
                           Date dispatch_time, long layout_id) {
         msnInfoMapper.insertMsn(msn_name, msn_desc, uid_assigned, uid_msn_starter, dispatch_time, layout_id);
@@ -32,17 +34,21 @@ public class MsnRepositoryImpl implements MsnRepository {
     }
 
     // 编辑任务
-    @Async
     @Override
-    public void editMsn(long msn_id, String msn_name, String msn_desc, long msn_flag) {
+    @CacheEvict(value = "msnCache",key = "#result")
+    public long editMsn(long msn_id, String msn_name, String msn_desc, long msn_flag) {
+        long layout_id = msnInfoMapper.msnIdGetLayoutId(msn_id);
         msnInfoMapper.editMsn(msn_id, msn_name, msn_desc, msn_flag);
+        return layout_id;
     }
 
     // 删除一个任务，用msn_id
-    @Async
     @Override
-    public void deleteOneMsn(long msn_id){
+    @CacheEvict(value = "msnCache",key = "#result")
+    public long deleteOneMsn(long msn_id){
+        long layout_id = msnInfoMapper.msnIdGetLayoutId(msn_id);
         msnInfoMapper.deleteOneMsn(msn_id);
+        return layout_id;
     }
 
     // 删除全部任务
@@ -52,7 +58,14 @@ public class MsnRepositoryImpl implements MsnRepository {
     }
 
     @Override
+    @Cacheable(value = "msnCache", key = "#layout_id")
     public List<MsnInfo> selectMsn(long layout_id) {
         return msnInfoMapper.selectMsn(layout_id);
+    }
+
+    // msn_id得到layout_id
+    @Override
+    public long msnIdGetLayoutId(long msn_id) {
+        return msnInfoMapper.msnIdGetLayoutId(msn_id);
     }
 }

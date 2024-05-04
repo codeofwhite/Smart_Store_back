@@ -33,6 +33,8 @@ public class TestController {
         user = userRepository.login(u_tel,upwd);  //判断用户是否存在
         if(user == null){  //空用户，可以注册
             userRepository.register(u_tel,upwd);
+            long uid = userRepository.usePhoneGetUid(Long.parseLong(u_tel));
+            userRepository.addUserPostAccount(uid);
             return ResponseEntity.ok("sign_up_success");
         }
         else{

@@ -12,12 +12,15 @@ public interface MsnRepository {
 
     long selectLastMsnInsertId();
 
-    void editMsn(long msn_id, String msn_name, String msn_desc, long msn_flag);
+    long editMsn(long msn_id, String msn_name, String msn_desc, long msn_flag);
 
 
-    void deleteOneMsn(long msn_id);
+    long deleteOneMsn(long msn_id);
 
     void deleteMsnByUid(long uid_msn_starter);
 
     List<MsnInfo> selectMsn(long layout_id);
+
+    // msn_id找layout_id
+    long msnIdGetLayoutId(long msn_id);
 }

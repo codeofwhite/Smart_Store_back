@@ -53,5 +53,9 @@
     <select id="usePhoneGetUid">
         SELECT uid FROM user_info WHERE u_tel = #{u_tel};
     </select>
+    <!--增加新的user_post账号-->
+    <insert id="addUserPostAccount">
+        INSERT INTO user_post(uid) VALUES (#{uid});
+    </insert>
 </mapper>
 

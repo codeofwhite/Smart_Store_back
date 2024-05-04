@@ -83,4 +83,9 @@ public class UserRepositoryImpl implements UserRepository {
         return userMapper.usePhoneGetUid(u_tel);
     }
 
+    @Override
+    public void addUserPostAccount(long uid) {
+        userMapper.addUserPostAccount(uid);
+    }
+
 }

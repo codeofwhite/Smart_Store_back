@@ -37,4 +37,6 @@ public interface UserMapper {
 
     long usePhoneGetUid(long u_tel);
 
+    void addUserPostAccount(long uid);
+
 }

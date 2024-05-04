@@ -16,11 +16,13 @@ public interface MsnInfoMapper {
 
     long selectLastMsnInsertId();
 
-    void editMsn(long msn_id, String msn_name, String msn_desc, long msn_flag);
+    long editMsn(long msn_id, String msn_name, String msn_desc, long msn_flag);
 
-    void deleteOneMsn(@Param("msn_id") long msn_id);
+    long deleteOneMsn(@Param("msn_id") long msn_id);
 
     void deleteMsnByUid(@Param("uid_msn_starter") long uid_msn_starter);
 
     List<MsnInfo> selectMsn(@Param("layout_id") long layout_id);
+
+    long msnIdGetLayoutId(long msn_id);
 }

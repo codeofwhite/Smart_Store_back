@@ -27,4 +27,6 @@ public interface UserRepository {
     Long acceptInvite(@Param("invite_code") String invite_code);
 
     long usePhoneGetUid(long u_tel);
+
+    void addUserPostAccount(long uid);
 }
