@@ -18,14 +18,12 @@ public class RecordRepositoryImpl implements RecordRepository {
     @Autowired
     RecordMapper recordMapper;
     @Override
-    @Cacheable("inRecordCache")
     public List<RecordReturn> rukuRecord(long layout_id) {
         List<RecordReturn> list = recordMapper.rukuRecord(layout_id);
         return list;
     }
 
     @Override
-    @Cacheable("outRecordCache")
     public List<RecordReturn> chukuRecord(long layout_id) {
         List<RecordReturn> list = recordMapper.chukuRecord(layout_id);
         return list;
@@ -33,21 +31,18 @@ public class RecordRepositoryImpl implements RecordRepository {
 
     @Async
     @Override
-    @CachePut("inRecordCache")
     public void insertRuRecord(RecordDTO recordDTO) {
         recordMapper.insertRuRecord(recordDTO);
     }
 
     @Async
     @Override
-    @CacheEvict("outRecordCache")
     public void updateChuRecord(long uid, long it_id) {
         recordMapper.updateChuRecord(uid,it_id);
     }
 
     @Async
     @Override
-    @CacheEvict({"inRecordCache", "outRecordCache"})
     public void delete7DAgo() {
         recordMapper.delete7DAgo();
     }

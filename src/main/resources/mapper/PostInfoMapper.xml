@@ -28,8 +28,8 @@
     </select>
 
     <!--下滑刷新出来的条数-->
-    <select id="scrollPost" resultType="canglangpoxiao.smart_store_back.entity.com.PostInfo">
-        SELECT * FROM post_info ORDER BY post_rls_time LIMIT 30;
+    <select id="scrollPost" resultType="canglangpoxiao.smart_store_back.ScrollPost">
+        SELECT post_id, post_name, post_media, post_detail, post_rls_time, post_rp_num, post_info.uid, post_likes, uname FROM post_info INNER JOIN user_info ON post_info.uid = user_info.uid ORDER BY post_rls_time LIMIT 30;
     </select>
 
     <!--插入用户点赞表-->
@@ -40,7 +40,7 @@
     <!--得到用户分享过的帖子，缩略图-->
     <select id="getUserShared">
         SELECT pi.post_id, pi.post_name, pi.post_likes, pi.post_media, pi.post_detail, pi.post_rls_time FROM user_shared us
-                                                                   INNER JOIN post_info pi on us.post_id = pi.post_id WHERE us.uid = #{uid};
+                                                                   INNER JOIN post_info pi on us.post_id = pi.post_id WHERE us.uid = #{uid} ORDER BY post_rls_time;
     </select>
 
     <!--得到用户点赞的贴子-->

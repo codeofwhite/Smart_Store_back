@@ -1,10 +1,12 @@
 package canglangpoxiao.smart_store_back.repository.Impl;
 
+import canglangpoxiao.smart_store_back.ScrollPost;
 import canglangpoxiao.smart_store_back.entity.com.PostInfo;
 import canglangpoxiao.smart_store_back.mapper.PostInfoMapper;
 import canglangpoxiao.smart_store_back.repository.PostRepository;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
@@ -12,7 +14,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class PostRepositoryImp implements PostRepository {
+public class PostRepositoryImpl implements PostRepository {
     @Autowired
     PostInfoMapper postInfoMapper;
     @Override
@@ -21,8 +23,9 @@ public class PostRepositoryImp implements PostRepository {
     }
 
     @Override
-    public List<PostInfo> scrollPost() {
-        List<PostInfo> list = postInfoMapper.scrollPost();
+    @Cacheable(value = "postCache", key = "'post'")
+    public List<ScrollPost> scrollPost() {
+        List<ScrollPost> list = postInfoMapper.scrollPost();
         return list;
     }
 
@@ -43,6 +46,7 @@ public class PostRepositoryImp implements PostRepository {
     }
 
     @Override
+    @CacheEvict(value = "postCache", key = "'post'")
     public void addNewPost(String post_media, String post_name, String post_detail, long uid) {
         postInfoMapper.addNewPost( post_media,  post_name,  post_detail,  uid);
     }
@@ -70,6 +74,7 @@ public class PostRepositoryImp implements PostRepository {
     }
 
     @Override
+    @CacheEvict(value = "postCache", key = "'post'")
     public void deletePost(long post_id) {
         postInfoMapper.deletePost(post_id);
     }
