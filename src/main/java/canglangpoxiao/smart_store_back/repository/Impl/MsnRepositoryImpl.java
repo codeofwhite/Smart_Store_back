@@ -37,6 +37,12 @@ public class MsnRepositoryImpl implements MsnRepository {
     @Override
     @CacheEvict(value = "msnCache",key = "#result")
     public long editMsn(long msn_id, String msn_name, String msn_desc, long msn_flag) {
+        if(msn_name.isEmpty()){
+            msn_name = null;
+        }
+        if(msn_desc.isEmpty()){
+            msn_desc = null;
+        }
         long layout_id = msnInfoMapper.msnIdGetLayoutId(msn_id);
         msnInfoMapper.editMsn(msn_id, msn_name, msn_desc, msn_flag);
         return layout_id;
@@ -57,6 +63,7 @@ public class MsnRepositoryImpl implements MsnRepository {
         msnInfoMapper.deleteMsnByUid(uid_msn_starter);
     }
 
+    // 找出layout下对应的msn
     @Override
     @Cacheable(value = "msnCache", key = "#layout_id")
     public List<MsnInfo> selectMsn(long layout_id) {

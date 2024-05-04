@@ -24,4 +24,8 @@
     <delete id="delete7DAgo">
         DELETE FROM record WHERE DATE(ruchu_time) &lt;= DATE(DATE_SUB(NOW(), INTERVAL 7 DAY));
     </delete>
+    <!--get layout_id-->
+    <select id="itIdGetLayoutId">
+        SELECT layout_id FROM record WHERE it_id = #{it_id};
+    </select>
 </mapper>

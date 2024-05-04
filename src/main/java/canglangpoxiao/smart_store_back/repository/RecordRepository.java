@@ -12,10 +12,12 @@ public interface RecordRepository {
     List<RecordReturn> chukuRecord(long layout_id);
 
     // 插入入库记录
-    void insertRuRecord(RecordDTO recordDTO);
+    long insertRuRecord(RecordDTO recordDTO);
 
     // 更新出库记录
-    void updateChuRecord(long uid, long it_id);
+    long updateChuRecord(long uid, long it_id);
 
     public void delete7DAgo();
+
+    long itIdGetLayoutId(long it_id);
 }

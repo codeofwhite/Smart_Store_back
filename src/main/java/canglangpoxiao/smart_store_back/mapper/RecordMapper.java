@@ -13,11 +13,14 @@ public interface RecordMapper {
     List<RecordReturn> rukuRecord(@Param("layout_id") long layout_id);
     List<RecordReturn> chukuRecord(@Param("layout_id") long layout_id);
 
-    void insertRuRecord(RecordDTO recordDTO);
+    long insertRuRecord(RecordDTO recordDTO);
 
     // 更新出库记录
-    void updateChuRecord(@Param("uid") long uid, @Param("it_id") long it_id);
+    long updateChuRecord(@Param("uid") long uid, @Param("it_id") long it_id);
 
     // 删除七天前
     public void delete7DAgo();
+
+    // 获取layout_id
+    long itIdGetLayoutId(long it_id);
 }
