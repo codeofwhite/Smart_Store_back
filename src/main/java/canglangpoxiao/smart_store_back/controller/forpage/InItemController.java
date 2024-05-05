@@ -7,6 +7,7 @@ import canglangpoxiao.smart_store_back.repository.ItemRepository;
 import canglangpoxiao.smart_store_back.repository.RecordRepository;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,9 +26,11 @@ public class InItemController {
     @Autowired
     RecordRepository recordRepository;
 
+    // 插入新的物品
+    @Transactional
     @RequestMapping(value = "/insertItem", method = RequestMethod.POST)
     @ResponseBody
-    public String insertItem(@RequestBody ItemInfo itemInfo){
+    public long insertItem(@RequestBody ItemInfo itemInfo){
 
         if (Objects.equals(itemInfo.getBest_before(), null)){
             itemInfo.setBest_before(Date.valueOf("1000-01-01"));
@@ -57,7 +60,8 @@ public class InItemController {
         }
 
         itemRepository.insertItem(itemInfo);
-        return "插入成功";
+        // 得到插入的it_id
+        return itemRepository.selectLastItemInsertId();
     }
 
     // 上传物品图片
@@ -94,6 +98,7 @@ public class InItemController {
         return "更新成功";
     }
 
+    // 得到物品的属性
     @RequestMapping(value = "/getItemAttribute", method = RequestMethod.POST)
     @ResponseBody
     public List<ItAttribute> getItemAttribute(@RequestParam List<String> itemName){

@@ -33,14 +33,14 @@ public class ItemRepositoryImpl implements ItemRepository {
     }
 
     // 删除物品
-    @Async
+    // @Async
     @Override
     public void deleteItem(long it_id, long uid) {
         itemInfoMapper.deleteItem(it_id, uid);
     }
 
     // 插入新的物品
-    @Async
+    //@Async("myExecutor")
     @Override
     public void insertItem(ItemInfo itemInfo) {
         itemInfoMapper.insertItem(itemInfo);
@@ -72,16 +72,22 @@ public class ItemRepositoryImpl implements ItemRepository {
     }
 
     // 出库物品
-    @Async
+    //@Async
     @Override
     public void ChuItem(long it_id) {
         itemInfoMapper.ChuItem(it_id);
     }
 
     // 更新物品图片
-    @Async
+    //@Async
     @Override
     public void updateItemImg(String it_img, long it_id) {
         itemInfoMapper.updateItemImg(it_img, it_id);
+    }
+
+    @Override
+    public long selectLastItemInsertId() {
+        System.out.println(itemInfoMapper.selectLastItemInsertId());
+        return itemInfoMapper.selectLastItemInsertId();
     }
 }

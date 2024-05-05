@@ -49,7 +49,7 @@ public class RecordRepositoryImpl implements RecordRepository {
         return layout_id;
     }
 
-    @Async
+    //@Async
     @Override
     @CacheEvict(value = "recordCache", allEntries = true) // 清空整个缓存
     public void delete7DAgo() {

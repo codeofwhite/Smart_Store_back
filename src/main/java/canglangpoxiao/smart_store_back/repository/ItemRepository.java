@@ -31,4 +31,6 @@ public interface ItemRepository {
     void ChuItem(long it_id);
 
     void updateItemImg(String it_img, long it_id);
+
+    long selectLastItemInsertId();
 }

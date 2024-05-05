@@ -29,7 +29,7 @@ public class PostRepositoryImpl implements PostRepository {
         return list;
     }
 
-    @Async
+    // @Async
     @Override
     public void insertLikePost(long post_id, long uid) {
         postInfoMapper.insertLikePost(post_id,uid);
@@ -56,14 +56,14 @@ public class PostRepositoryImpl implements PostRepository {
         return postInfoMapper.selectLastPostInsertId();
     }
 
-    @Async
+    //@Async
     @Override
     @CacheEvict(value = "postCache", key = "'post'")
     public void addPostLike(long post_id) {
         postInfoMapper.addPostLike(post_id);
     }
 
-    @Async
+    //@Async
     @Override
     public void insertShared(long uid, long post_id) {
         postInfoMapper.insertShared(uid ,post_id);
@@ -80,7 +80,7 @@ public class PostRepositoryImpl implements PostRepository {
         postInfoMapper.deletePost(post_id);
     }
 
-    @Async
+    //@Async
     @Override
     @CacheEvict(value = "postCache", key = "'post'")
     public void deleteLikedPost(long post_id, long uid) {

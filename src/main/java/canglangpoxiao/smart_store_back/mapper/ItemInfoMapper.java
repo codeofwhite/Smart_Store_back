@@ -35,4 +35,6 @@ public interface ItemInfoMapper {
 
     void updateItemImg(String it_img, long it_id);
 
+    long selectLastItemInsertId();
+
 }

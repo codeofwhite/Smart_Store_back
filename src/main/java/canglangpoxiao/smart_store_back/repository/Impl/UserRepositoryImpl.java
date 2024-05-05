@@ -41,7 +41,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     // 更新用户头像
-    @Async
+    //@Async
     @Override
     @CacheEvict(key = "#uid")
     public void updateUserImg(String u_img, long uid) {
@@ -68,7 +68,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    @Async
+    //@Async
     public void inviteFamily(long uid, String invite_code , long layout_id) {
         userMapper.inviteFamily(uid, invite_code, layout_id);
     }

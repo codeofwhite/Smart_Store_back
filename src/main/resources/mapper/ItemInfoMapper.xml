@@ -37,5 +37,9 @@
     <update id="updateItemImg">
         UPDATE item_info SET it_img = #{it_img} WHERE it_id = #{it_id};
     </update>
+    <!--找到最后一条插入-->
+    <select id="selectLastItemInsertId">
+        SELECT LAST_INSERT_ID() as id;
+    </select>
 </mapper>
 
