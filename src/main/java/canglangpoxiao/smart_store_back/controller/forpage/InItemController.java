@@ -18,6 +18,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.locks.ReentrantLock;
 
 @RestController
 public class InItemController {
@@ -25,41 +26,48 @@ public class InItemController {
     private ItemRepository itemRepository;
     @Autowired
     RecordRepository recordRepository;
+    private final ReentrantLock lock = new ReentrantLock();
 
     // 插入新的物品
     @Transactional
     @RequestMapping(value = "/insertItem", method = RequestMethod.POST)
     @ResponseBody
     public long insertItem(@RequestBody ItemInfo itemInfo){
-
-        if (Objects.equals(itemInfo.getBest_before(), null)){
-            itemInfo.setBest_before(Date.valueOf("1000-01-01"));
-        }
-        if(itemInfo.getIt_type() != null) {
-            if (itemInfo.getIt_type().isEmpty()) {
+        lock.lock();  // 获取锁
+        try{
+            if (Objects.equals(itemInfo.getBest_before(), null)){
+                itemInfo.setBest_before(Date.valueOf("1000-01-01"));
+            }
+            if(itemInfo.getIt_type() != null) {
+                if (itemInfo.getIt_type().isEmpty()) {
+                    itemInfo.setIt_type("生活杂物");
+                }
+            }
+            else {
                 itemInfo.setIt_type("生活杂物");
             }
-        }
-        else {
-            itemInfo.setIt_type("生活杂物");
-        }
-        if(itemInfo.getIt_img() != null){
-            if(itemInfo.getIt_img().isEmpty()){
+            if(itemInfo.getIt_img() != null){
+                if(itemInfo.getIt_img().isEmpty()){
+                    itemInfo.setIt_img("https://smartstorezzw.oss-cn-hangzhou.aliyuncs.com/ItemDefault.png");
+                }
+            }
+            else {
                 itemInfo.setIt_img("https://smartstorezzw.oss-cn-hangzhou.aliyuncs.com/ItemDefault.png");
             }
-        }
-        else {
-            itemInfo.setIt_img("https://smartstorezzw.oss-cn-hangzhou.aliyuncs.com/ItemDefault.png");
-        }
-        if(itemInfo.getRemark() != null) {
-            if (itemInfo.getRemark().isEmpty()) {
+            if(itemInfo.getRemark() != null) {
+                if (itemInfo.getRemark().isEmpty()) {
+                    itemInfo.setRemark("没有特殊标注");
+                }
+            }else{
                 itemInfo.setRemark("没有特殊标注");
             }
-        }else{
-            itemInfo.setRemark("没有特殊标注");
+
+            itemRepository.insertItem(itemInfo);
+        }
+        finally {
+            lock.unlock();  // 释放锁
         }
 
-        itemRepository.insertItem(itemInfo);
         // 得到插入的it_id
         return itemRepository.selectLastItemInsertId();
     }
