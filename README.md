@@ -27,15 +27,15 @@
 - `/src`：包含所有源代码文件。
   - `/main`：
     - `/java`：存放Java源代码文件。
-      -`/canglangpoxiao`
-        -`/smart_store_back`
-          -`/config`：  包含项目的配置类，用于定义和管理应用程序的配置信息。
-          -`/controller`： 存放控制器类，负责处理用户请求和返回响应。
-          -`/entity`： 包含实体（或模型）类，代表数据库中的表，并用于映射数据。
-          -`/mapper`： 用于MyBatis的映射器接口，定义了数据库操作的方法。
-          -`/repository`： 存放Spring Data JPA的仓库接口，用于简化数据库访问。
+      - `/canglangpoxiao`
+        - `/smart_store_back`
+          - `/config`：  包含项目的配置类，用于定义和管理应用程序的配置信息。
+          - `/controller`： 存放控制器类，负责处理用户请求和返回响应。
+          - `/entity`： 包含实体（或模型）类，代表数据库中的表，并用于映射数据。
+          - `/mapper`： 用于MyBatis的映射器接口，定义了数据库操作的方法。
+          - `/repository`： 存放Spring Data JPA的仓库接口，用于简化数据库访问。
     - `/resources`：包含所有非代码资源，如配置文件和静态资源。
-      -`/mapper`：包含对应的SQL查询语句。
+      - `/mapper`：包含对应的SQL查询语句。
   - `/test`：包含测试代码和资源。
 - `/target`：存放Maven构建生成的文件。
 - `pom.xml`：Maven项目对象模型文件，定义了项目的构建、依赖和配置信息。
