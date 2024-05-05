@@ -31,11 +31,14 @@ public class RecordRepositoryImpl implements RecordRepository {
         return list;
     }
 
+
+    // 注意in out record，别打错了
+    // 插入一条入库记录
     @Override
-    @CacheEvict(value = "outRecordCache", key = "#result")
+    @CacheEvict(value = "inRecordCache", key = "#result")
     public long insertRuRecord(RecordDTO recordDTO) {
         recordMapper.insertRuRecord(recordDTO);
-        return itIdGetLayoutId(recordDTO.getIt_id());
+        return recordDTO.getLayout_id();
     }
 
     @Override

@@ -58,6 +58,7 @@ public class PostRepositoryImpl implements PostRepository {
 
     @Async
     @Override
+    @CacheEvict(value = "postCache", key = "'post'")
     public void addPostLike(long post_id) {
         postInfoMapper.addPostLike(post_id);
     }
@@ -81,6 +82,7 @@ public class PostRepositoryImpl implements PostRepository {
 
     @Async
     @Override
+    @CacheEvict(value = "postCache", key = "'post'")
     public void deleteLikedPost(long post_id, long uid) {
         postInfoMapper.deleteLikedPost(post_id, uid);
     }
