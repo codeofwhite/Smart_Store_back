@@ -5,6 +5,7 @@ import canglangpoxiao.smart_store_back.RecordReturn;
 import canglangpoxiao.smart_store_back.entity.Record;
 import canglangpoxiao.smart_store_back.repository.ItemRepository;
 import canglangpoxiao.smart_store_back.repository.RecordRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -60,11 +61,12 @@ public class rukujiluController {
     // 出库
     @PostMapping("/ChuItem")
     @ResponseBody
+    @Transactional // 事务管理
     public String ChuItem(@RequestParam long it_id, @RequestParam long uid)
     {
         System.out.println(it_id);
-        recordRepository.updateChuRecord(uid,it_id);
         itemRepository.ChuItem(it_id);
+        recordRepository.updateChuRecord(uid,it_id);
         return "出库成功";
     }
 

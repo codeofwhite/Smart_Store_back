@@ -24,6 +24,7 @@ import java.util.List;
 public class UserRepositoryImpl implements UserRepository {
     @Autowired
     UserMapper userMapper;
+
     // 这个已经不用了
     @Override
     public List<User> findAll() {
@@ -41,7 +42,6 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     // 更新用户头像
-    //@Async
     @Override
     @CacheEvict(key = "#uid")
     public void updateUserImg(String u_img, long uid) {
@@ -68,7 +68,6 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    //@Async
     public void inviteFamily(long uid, String invite_code , long layout_id) {
         userMapper.inviteFamily(uid, invite_code, layout_id);
     }

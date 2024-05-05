@@ -34,7 +34,6 @@ public class StgRepositoryImpl implements StgRepository {
         return stgInfoMapper.getStgNum(layout_id);
     }
 
-    //@Async
     @Override
     public void insertStg(long uid, String stg_name, long room_id, long layout_id) {
         stgInfoMapper.insertStg(uid,stg_name,room_id,layout_id);

@@ -80,7 +80,6 @@ public class PostRepositoryImpl implements PostRepository {
         postInfoMapper.deletePost(post_id);
     }
 
-    //@Async
     @Override
     @CacheEvict(value = "postCache", key = "'post'")
     public void deleteLikedPost(long post_id, long uid) {

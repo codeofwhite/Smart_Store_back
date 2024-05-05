@@ -33,7 +33,6 @@ public class ItemRepositoryImpl implements ItemRepository {
     }
 
     // 删除物品
-    // @Async
     @Override
     public void deleteItem(long it_id, long uid) {
         itemInfoMapper.deleteItem(it_id, uid);
@@ -72,14 +71,12 @@ public class ItemRepositoryImpl implements ItemRepository {
     }
 
     // 出库物品
-    //@Async
     @Override
     public void ChuItem(long it_id) {
         itemInfoMapper.ChuItem(it_id);
     }
 
     // 更新物品图片
-    //@Async
     @Override
     public void updateItemImg(String it_img, long it_id) {
         itemInfoMapper.updateItemImg(it_img, it_id);

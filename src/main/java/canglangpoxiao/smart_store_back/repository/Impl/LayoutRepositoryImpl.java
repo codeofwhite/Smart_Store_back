@@ -19,7 +19,6 @@ public class LayoutRepositoryImpl implements LayoutRepository {
         return layoutInfoMapper.findAllLayout(uid);
     }
 
-    //@Async
     @Override
     public void insertLayout(long uid, String layout_name, long layout_size, String layout_img) {
         layoutInfoMapper.insertLayout(uid,layout_name,layout_size,layout_img);
@@ -30,8 +29,8 @@ public class LayoutRepositoryImpl implements LayoutRepository {
         return layoutInfoMapper.selectLastInsertId();
     }
 
-    // @Async
     @Override
+    //@Async("myExecutor")
     public void insertLayoutFamily(long uid, long id) {
         layoutInfoMapper.insertLayoutFamily(uid,id);
     }
