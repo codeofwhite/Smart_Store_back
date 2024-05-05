@@ -50,7 +50,7 @@ public class RecordRepositoryImpl implements RecordRepository {
     }
 
     @Override
-    @CacheEvict(value = "recordCache", allEntries = true) // 清空整个缓存
+    @CacheEvict(value = {"inRecordCache","outRecordCache"}, allEntries = true) // 清空整个缓存
     public void delete7DAgo() {
         recordMapper.delete7DAgo();
     }

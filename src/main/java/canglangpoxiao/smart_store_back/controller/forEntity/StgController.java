@@ -1,4 +1,4 @@
-package canglangpoxiao.smart_store_back.controller;
+package canglangpoxiao.smart_store_back.controller.forEntity;
 
 import canglangpoxiao.smart_store_back.entity.StgInfo;
 import canglangpoxiao.smart_store_back.repository.StgRepository;

@@ -9,7 +9,7 @@
 1. 因为存在中间表中的有uid_assigned，就传参uid_assigned和msn_id改
 * */
 
-package canglangpoxiao.smart_store_back.controller;
+package canglangpoxiao.smart_store_back.controller.forEntity;
 
 import canglangpoxiao.smart_store_back.repository.MsnRepository;
 import org.apache.ibatis.annotations.Param;
