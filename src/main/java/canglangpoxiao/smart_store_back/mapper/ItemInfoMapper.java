@@ -21,7 +21,7 @@ public interface ItemInfoMapper {
 
     void deleteItem(@Param("it_id") long it_id, @Param("uid") long uid);
 
-    void insertItem(@RequestBody ItemInfo itemInfo);
+    long insertItem(@RequestBody ItemInfo itemInfo);
 
     Date getBestBefore(long item_id);
 
@@ -31,10 +31,13 @@ public interface ItemInfoMapper {
     // 返回物品属性
     ItAttribute getItemAttribute(String itemName);
 
-    void ChuItem(long it_id);
+    long ChuItem(long it_id);
 
     void updateItemImg(String it_img, long it_id);
 
     long selectLastItemInsertId();
+
+    // 用it_id找到对应的stg_id
+    long useItIdFindStgId(long it_id);
 
 }

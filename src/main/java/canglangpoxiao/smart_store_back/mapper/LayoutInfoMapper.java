@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface LayoutInfoMapper {
@@ -17,9 +18,9 @@ public interface LayoutInfoMapper {
 
     public long getFamNum(long layout_id);
 
-    void insertLayoutFamily(long uid, long id);
+    void insertLayoutFamily(long uid, long layout_id);
     long selectLastInsertId();
 
-    List<Long> useLayoutGetUid(long layout_id);
+    List<Map<String, Object>> useLayoutGetUid(long layout_id);
 
 }

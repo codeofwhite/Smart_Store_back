@@ -42,7 +42,7 @@ public class InviteFamily {
         Long layout_id = userRepository.acceptInvite(invite_code);
         System.out.println(layout_id);
         if(layout_id == null){
-            return null;
+            return -1L;
         }
         else{
             layoutRepository.insertLayoutFamily(uid,layout_id);

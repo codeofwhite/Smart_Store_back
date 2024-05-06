@@ -17,6 +17,8 @@ import java.util.List;
 public class PostRepositoryImpl implements PostRepository {
     @Autowired
     PostInfoMapper postInfoMapper;
+
+    // 插入精选推文
     @Override
     public void insertSelectedPost(long post_id){
         postInfoMapper.insertSelectedPost(post_id);
@@ -56,6 +58,7 @@ public class PostRepositoryImpl implements PostRepository {
         return postInfoMapper.selectLastPostInsertId();
     }
 
+    // 增加post的点赞数
     //@Async
     @Override
     @CacheEvict(value = "postCache", key = "'post'")
@@ -63,7 +66,7 @@ public class PostRepositoryImpl implements PostRepository {
         postInfoMapper.addPostLike(post_id);
     }
 
-    //@Async
+    // 插入用户已经分享
     @Override
     public void insertShared(long uid, long post_id) {
         postInfoMapper.insertShared(uid ,post_id);
@@ -81,7 +84,6 @@ public class PostRepositoryImpl implements PostRepository {
     }
 
     @Override
-    @CacheEvict(value = "postCache", key = "'post'")
     public void deleteLikedPost(long post_id, long uid) {
         postInfoMapper.deleteLikedPost(post_id, uid);
     }
@@ -89,5 +91,13 @@ public class PostRepositoryImpl implements PostRepository {
     @Override
     public long whetherLikeOrNot(long post_id, long uid) {
         return postInfoMapper.whetherLikeOrNot(post_id,uid);
+    }
+
+
+    // 点赞数减一
+    @Override
+    @CacheEvict(value = "postCache", key = "'post'")
+    public void delPostLike(long post_id) {
+        postInfoMapper.delPostLike(post_id);
     }
 }

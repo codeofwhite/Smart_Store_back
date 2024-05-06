@@ -4,10 +4,13 @@ import canglangpoxiao.smart_store_back.entity.LayoutInfo;
 import canglangpoxiao.smart_store_back.mapper.LayoutInfoMapper;
 import canglangpoxiao.smart_store_back.repository.LayoutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Repository
@@ -31,8 +34,9 @@ public class LayoutRepositoryImpl implements LayoutRepository {
 
     @Override
     //@Async("myExecutor")
-    public void insertLayoutFamily(long uid, long id) {
-        layoutInfoMapper.insertLayoutFamily(uid,id);
+    @CacheEvict(value = "famNumCache", key = "#layout_id")
+    public void insertLayoutFamily(long uid, long layout_id) {
+        layoutInfoMapper.insertLayoutFamily(uid,layout_id);
     }
 
     @Override
@@ -41,12 +45,13 @@ public class LayoutRepositoryImpl implements LayoutRepository {
     }
 
     @Override
+    @Cacheable(value = "famNumCache", key = "#layout_id")
     public long getFamNum(long layout_id) {
         return layoutInfoMapper.getFamNum(layout_id);
     }
 
     @Override
-    public List<Long> useLayoutGetUid(long layout_id) {
+    public List<Map<String, Object>> useLayoutGetUid(long layout_id) {
         return layoutInfoMapper.useLayoutGetUid(layout_id);
     }
 }

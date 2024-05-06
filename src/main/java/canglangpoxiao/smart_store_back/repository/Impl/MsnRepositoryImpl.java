@@ -59,6 +59,7 @@ public class MsnRepositoryImpl implements MsnRepository {
 
     // 删除全部任务
     @Override
+    @CacheEvict(value = "msnCache",key = "#result")
     public void deleteMsnByUid(long uid_msn_starter){
         msnInfoMapper.deleteMsnByUid(uid_msn_starter);
     }

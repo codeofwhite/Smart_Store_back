@@ -17,7 +17,7 @@
     <!--插入进layout_family表-->
     <insert id="insertLayoutFamily">
         INSERT INTO layout_family(uid, layout_id)
-        VALUES (#{uid}, #{id});
+        VALUES (#{uid}, #{layout_id});
     </insert>
 
 
@@ -33,7 +33,7 @@
 
     <!--用layout拿到uid-->
     <select id="useLayoutGetUid">
-        SELECT DISTINCT(uid) FROM layout_family WHERE layout_id = #{layout_id};
+        SELECT DISTINCT(lf.uid), uname FROM layout_family lf Inner Join user_info ui ON lf.uid = ui.uid WHERE layout_id = #{layout_id};
     </select>
 </mapper>
 

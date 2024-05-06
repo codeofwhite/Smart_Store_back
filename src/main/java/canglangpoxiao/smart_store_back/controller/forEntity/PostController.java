@@ -57,6 +57,7 @@ public class PostController {
     @PostMapping("/deleteLikedPost")
     String deleteLikedPost(long post_id, long uid){
         postRepository.deleteLikedPost(post_id, uid);
+        postRepository.delPostLike(post_id);
         return "删除成功";
     }
 

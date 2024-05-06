@@ -27,12 +27,15 @@ public class ItemRepositoryImpl implements ItemRepository {
         return itemInfoMapper.findAllItem(uid);
     }
 
+    // 用Stg找物品
     @Override
+    @Cacheable(value = "itemCache", key = "#stg_id")
     public List<ItemInfo> useStgFindItem(long stg_id) {
         return itemInfoMapper.useStgFindItem(stg_id);
+
     }
 
-    // 删除物品
+    // 删除物品，废弃
     @Override
     public void deleteItem(long it_id, long uid) {
         itemInfoMapper.deleteItem(it_id, uid);
@@ -41,8 +44,11 @@ public class ItemRepositoryImpl implements ItemRepository {
     // 插入新的物品
     //@Async("myExecutor")
     @Override
-    public void insertItem(ItemInfo itemInfo) {
+    @CacheEvict(value = "itemCache", key = "#result")
+    public long insertItem(ItemInfo itemInfo) {
+        long stg_id = itemInfo.getStg_id();
         itemInfoMapper.insertItem(itemInfo);
+        return stg_id;
     }
 
     // 得到最佳日期
@@ -72,13 +78,18 @@ public class ItemRepositoryImpl implements ItemRepository {
 
     // 出库物品
     @Override
-    public void ChuItem(long it_id) {
+    @CacheEvict(value = "itemCache", key = "#result")
+    public long ChuItem(long it_id) {
+        long stg_id = itemInfoMapper.useItIdFindStgId(it_id);
         itemInfoMapper.ChuItem(it_id);
+        return stg_id;
     }
 
     // 更新物品图片
     @Override
+    @CacheEvict(value = "itemCache", key = "#result")
     public void updateItemImg(String it_img, long it_id) {
+        long stg_id = itemInfoMapper.useItIdFindStgId(it_id);
         itemInfoMapper.updateItemImg(it_img, it_id);
     }
 
@@ -87,4 +98,13 @@ public class ItemRepositoryImpl implements ItemRepository {
         System.out.println(itemInfoMapper.selectLastItemInsertId());
         return itemInfoMapper.selectLastItemInsertId();
     }
+
+    // 用it_id找到对应的stg_id
+    @Override
+    public long useItIdFindStgId(long it_id) {
+        return itemInfoMapper.useItIdFindStgId(it_id);
+    }
+
+
+
 }

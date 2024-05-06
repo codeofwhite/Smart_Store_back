@@ -36,4 +36,7 @@ public interface PostRepository {
 
     // 判断用户是否对该帖子点赞
     long whetherLikeOrNot(long post_id, long uid);
+
+    // 减少帖子点赞的数量
+    void delPostLike(long post_id);
 }

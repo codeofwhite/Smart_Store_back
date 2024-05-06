@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @RestController
@@ -16,8 +17,7 @@ public class LayoutController {
     @RequestMapping(value = "/useLayoutGetUid", method = RequestMethod.POST)
     @ResponseBody
     // 返回这个Layout下的uid
-    List<Long> useLayoutGetUid(long layout_id){
-        List<Long> list = layoutRepository.useLayoutGetUid(layout_id);
-        return list;
+    List<Map<String, Object>> useLayoutGetUid(long layout_id){
+        return layoutRepository.useLayoutGetUid(layout_id);
     }
 }

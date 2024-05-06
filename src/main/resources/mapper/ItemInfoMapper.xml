@@ -41,5 +41,9 @@
     <select id="selectLastItemInsertId">
         SELECT LAST_INSERT_ID() as id;
     </select>
+    <!--用物品ID找收纳点ID-->
+    <select id="useItIdFindStgId">
+        SELECT stg_id FROM item_info WHERE it_id = #{it_id};
+    </select>
 </mapper>
 

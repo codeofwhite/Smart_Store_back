@@ -16,7 +16,7 @@ public interface ItemRepository {
 
     public void deleteItem(long it_id, long uid);
 
-    public void insertItem(ItemInfo itemInfo);
+    public long insertItem(ItemInfo itemInfo);
 
     // 拿出过期日期
     Date getBestBefore(long item_id);
@@ -28,9 +28,12 @@ public interface ItemRepository {
     // 查询物品属性成分
     ItAttribute getItemAttribute(String itemName);
 
-    void ChuItem(long it_id);
+    long ChuItem(long it_id);
 
     void updateItemImg(String it_img, long it_id);
 
     long selectLastItemInsertId();
+
+    // 用it_id找到对应的stg_id
+    long useItIdFindStgId(long it_id);
 }

@@ -56,6 +56,13 @@
         WHERE post_id = #{post_id};
     </update>
 
+    <!--减点赞数-->
+    <update id="delPostLike">
+        UPDATE post_info
+        SET post_likes = post_likes - 1
+        WHERE post_id = #{post_id};
+    </update>
+
     <!--获取帖子的详细信息-->
     <select id="getPostDetail">
         SELECT * FROM post_info WHERE post_id = #{post_id};
