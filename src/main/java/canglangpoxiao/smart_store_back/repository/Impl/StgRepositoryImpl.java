@@ -4,6 +4,9 @@ import canglangpoxiao.smart_store_back.entity.StgInfo;
 import canglangpoxiao.smart_store_back.mapper.StgInfoMapper;
 import canglangpoxiao.smart_store_back.repository.StgRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 
@@ -20,6 +23,7 @@ public class StgRepositoryImpl implements StgRepository {
     }
 
     @Override
+    @Cacheable(value = "stgCache", key = "#room_id")
     public List<StgInfo> useRoomFindStg(long room_id) {
         return stgInfoMapper.useRoomFindStg(room_id);
     }
@@ -29,12 +33,20 @@ public class StgRepositoryImpl implements StgRepository {
         return stgInfoMapper.findFavStg(layout_id);
     }
 
+    // 得到收纳点数量
     @Override
+    @Cacheable(value = "stgNumCache", key = "#layout_id")
     public long getStgNum(long layout_id) {
         return stgInfoMapper.getStgNum(layout_id);
     }
 
+    // 插入新收纳点
     @Override
+    @Caching(evict ={
+            @CacheEvict(value = "stgNumCache", key = "#layout_id"),
+            @CacheEvict(value = "stgCache", key = "#room_id")
+    }
+    )
     public void insertStg(long uid, String stg_name, long room_id, long layout_id) {
         stgInfoMapper.insertStg(uid,stg_name,room_id,layout_id);
     }
