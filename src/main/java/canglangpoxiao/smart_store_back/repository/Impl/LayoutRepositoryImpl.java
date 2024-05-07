@@ -17,12 +17,15 @@ import java.util.Map;
 public class LayoutRepositoryImpl implements LayoutRepository {
     @Autowired
     LayoutInfoMapper layoutInfoMapper;
+
+    // 废弃
     @Override
     public List<LayoutInfo> findAllLayout(long uid) {
         return layoutInfoMapper.findAllLayout(uid);
     }
 
     @Override
+    @CacheEvict(value = "layoutCache", key = "#uid")
     public void insertLayout(long uid, String layout_name, long layout_size, String layout_img) {
         layoutInfoMapper.insertLayout(uid,layout_name,layout_size,layout_img);
     }
@@ -40,6 +43,7 @@ public class LayoutRepositoryImpl implements LayoutRepository {
     }
 
     @Override
+    @Cacheable(value = "layoutCache", key = "#uid")
     public List<LayoutInfo> getLayoutId(long uid) {
         return layoutInfoMapper.getLayoutId(uid);
     }
